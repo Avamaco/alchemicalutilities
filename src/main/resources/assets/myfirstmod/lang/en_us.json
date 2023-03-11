@@ -1,0 +1,14 @@
+{
+  "item.myfirstmod.citrine": "Citrine",
+  "item.myfirstmod.copper_syringe": "Copper Syringe",
+
+
+  "item.myfirstmod.glass_phial": "Glass Phial",
+  "item.myfirstmod.phial_of_healing": "Phial of Healing",
+  "item.myfirstmod.phial_of_regeneration": "Phial of Regeneration",
+
+  "block.myfirstmod.citrine_block": "Citrine Block",
+  "block.myfirstmod.alchemical_glass": "Alchemical Glass",
+
+  "itemGroup.myfirsttab": "My First Mod"
+}
