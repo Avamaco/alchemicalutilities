@@ -1,6 +1,7 @@
 package net.avamaco.alchemicalutilities.block;
 
 import net.avamaco.alchemicalutilities.AlchemicalUtilities;
+import net.avamaco.alchemicalutilities.block.custom.AlchemicalStationBlock;
 import net.avamaco.alchemicalutilities.item.ModCreativeModeTab;
 import net.avamaco.alchemicalutilities.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -28,6 +29,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> ALCHEMICAL_GLASS = registerBlock("alchemical_glass",
             () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()), ModCreativeModeTab.MYFIRST_TAB);
+
+    public static final RegistryObject<Block> ALCHEMICAL_STATION = registerBlock("alchemical_station",
+            () -> new AlchemicalStationBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.MYFIRST_TAB);
 
 
     private static <T extends  Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "alchemicalutilities:block/alchemical_station" },
+    "facing=east": { "model": "alchemicalutilities:block/alchemical_station", "y":  90 },
+    "facing=south": { "model": "alchemicalutilities:block/alchemical_station", "y":  180 },
+    "facing=west": { "model": "alchemicalutilities:block/alchemical_station", "y":  270 }
+  }
+}
