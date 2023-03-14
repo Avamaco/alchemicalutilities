@@ -1,20 +1,17 @@
 package net.avamaco.alchemicalutilities.item.custom;
 
-import com.google.common.collect.Lists;
 import net.avamaco.alchemicalutilities.util.ModTags;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public class CopperSyringeItem extends Item {
@@ -24,41 +21,43 @@ public class CopperSyringeItem extends Item {
     }
 
     @Override
-    @Nonnull
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (isCharged(itemstack)) {
             inject(pPlayer, itemstack);
-            pPlayer.sendMessage(new TextComponent("Injected."), pPlayer.getUUID());
+            //pPlayer.sendMessage(new TextComponent("Injected."), pPlayer.getUUID());
             return InteractionResultHolder.consume(itemstack);
         }
         else if (checkForPhial(pPlayer)) {
-            pPlayer.startUsingItem(pHand);
-            pPlayer.sendMessage(new TextComponent("startUsingItem called."), pPlayer.getUUID());
+            loadPhial(pPlayer, itemstack);
+            pPlayer.getCooldowns().addCooldown(this, 20);
             return InteractionResultHolder.consume(itemstack);
         }
         else {
-            pPlayer.sendMessage(new TextComponent("Something failed."), pPlayer.getUUID());
             return InteractionResultHolder.fail(itemstack);
         }
     }
 
+
     private void inject(Player pPlayer, ItemStack syringe) {
-        ItemStack usedPhial = getChargedPhials(syringe).get(0);
+        if (getChargedPhial(syringe) == null) {
+            clearChargedPhial(syringe);
+            return;
+        }
+        ItemStack usedPhial = getChargedPhial(syringe);
         if (usedPhial.getItem() instanceof PotionUtilityItem) {
             ((PotionUtilityItem) usedPhial.getItem()).UseOnEntity(pPlayer);
         }
-        clearChargedPhials(syringe);
-        setCharged(syringe, false);
+        clearChargedPhial(syringe);
     }
 
     public int getUseDuration() {
         return 40;
     }
 
-    public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.BOW;
-    }
+//    public UseAnim getUseAnimation(ItemStack pStack) {
+//        return UseAnim.BOW;
+//    }
 
     public static boolean isCharged(ItemStack itemStack) {
         CompoundTag compoundtag = itemStack.getTag();
@@ -70,43 +69,32 @@ public class CopperSyringeItem extends Item {
         compoundtag.putBoolean("Charged", pIsCharged);
     }
 
-    private static void addChargedPhial(ItemStack pStack, ItemStack pAmmoStack) {
+    private static void addChargedPhial(ItemStack pStack, ItemStack pPhialStack) {
+        setCharged(pStack, true);
         CompoundTag compoundtag = pStack.getOrCreateTag();
-        ListTag listtag;
-        if (compoundtag.contains("ChargedPhials", 9)) {
-            listtag = compoundtag.getList("ChargedPhials", 10);
-        } else {
-            listtag = new ListTag();
-        }
-
-        CompoundTag compoundtag1 = new CompoundTag();
-        pAmmoStack.save(compoundtag1);
-        listtag.add(compoundtag1);
-        compoundtag.put("ChargedPhials", listtag);
+        CompoundTag ct = new CompoundTag();
+        pPhialStack.save(ct);
+        compoundtag.put("ChargedPhial", ct);
     }
 
-    private static List<ItemStack> getChargedPhials(ItemStack pStack) {
-        List<ItemStack> list = Lists.newArrayList();
-        CompoundTag compoundtag = pStack.getTag();
-        if (compoundtag != null && compoundtag.contains("ChargedPhials", 9)) {
-            ListTag listtag = compoundtag.getList("ChargedPhials", 10);
-            for(int i = 0; i < listtag.size(); ++i) {
-                CompoundTag compoundtag1 = listtag.getCompound(i);
-                list.add(ItemStack.of(compoundtag1));
-            }
+    @Nullable
+    private static ItemStack getChargedPhial(ItemStack pStack) {
+        CompoundTag compoundtag = pStack.getOrCreateTag();
+        if (compoundtag.contains("ChargedPhial")) {
+            CompoundTag phialtag = compoundtag.getCompound("ChargedPhial");
+            return ItemStack.of(phialtag);
         }
-
-        return list;
+        else {
+            return null;
+        }
     }
 
-    private static void clearChargedPhials(ItemStack pStack) {
+    private static void clearChargedPhial(ItemStack pStack) {
+        setCharged(pStack, false);
         CompoundTag compoundtag = pStack.getTag();
-        if (compoundtag != null) {
-            ListTag listtag = compoundtag.getList("ChargedPhials", 9);
-            listtag.clear();
-            compoundtag.put("ChargedPhials", listtag);
+        if (compoundtag != null && compoundtag.contains("ChargedPhial")) {
+            compoundtag.remove("ChargedPhial");
         }
-
     }
 
 
@@ -123,7 +111,7 @@ public class CopperSyringeItem extends Item {
     }
 
     private static boolean loadPhial(Player pShooter, ItemStack pStack) {
-        if (checkForPhial(pShooter)) {
+        if (!(checkForPhial(pShooter))) {
             return false;
         }
         ItemStack itemstack;
@@ -158,7 +146,22 @@ public class CopperSyringeItem extends Item {
         return false;
     }
 
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+
+        if (getChargedPhial(pStack) == null) {
+            pTooltipComponents.add(new TextComponent("Empty"));
+        }
+        else {
+            String currentPhial = getChargedPhial(pStack).getItem().toString();
+            pTooltipComponents.add(new TextComponent(currentPhial));
+        }
+
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
     private static boolean isPhial(ItemStack itemStack) {
         return itemStack.is(ModTags.Items.POTION_PHIALS);
     }
+
 }
