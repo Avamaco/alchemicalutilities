@@ -6,13 +6,13 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 
-public class PhialOfRegenerationItem extends PotionUtilityItem {
-    public PhialOfRegenerationItem(Item.Properties pProperties) {
+public class PhialOfHarmingItem extends PotionUtilityItem {
+    public PhialOfHarmingItem(Item.Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     public void UseOnEntity(LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 440, 0));
+        entity.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 0));
     }
 }

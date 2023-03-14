@@ -25,12 +25,12 @@ public class CopperSyringeItem extends Item {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (isCharged(itemstack)) {
             inject(pPlayer, itemstack);
-            //pPlayer.sendMessage(new TextComponent("Injected."), pPlayer.getUUID());
+            pPlayer.getCooldowns().addCooldown(this, 15);
             return InteractionResultHolder.consume(itemstack);
         }
         else if (checkForPhial(pPlayer)) {
             loadPhial(pPlayer, itemstack);
-            pPlayer.getCooldowns().addCooldown(this, 20);
+            pPlayer.getCooldowns().addCooldown(this, 60);
             return InteractionResultHolder.consume(itemstack);
         }
         else {

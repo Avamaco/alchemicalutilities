@@ -6,6 +6,13 @@
   "item.alchemicalutilities.glass_phial": "Glass Phial",
   "item.alchemicalutilities.phial_of_healing": "Phial of Healing",
   "item.alchemicalutilities.phial_of_regeneration": "Phial of Regeneration",
+  "item.alchemicalutilities.phial_of_fire_resistance": "Phial of Fire Resistance",
+  "item.alchemicalutilities.phial_of_harming": "Phial of Harming",
+  "item.alchemicalutilities.phial_of_invisibility": "Phial of Invisibility",
+  "item.alchemicalutilities.phial_of_leaping": "Phial of Leaping",
+  "item.alchemicalutilities.phial_of_night_vision": "Phial of Night Vision",
+  "item.alchemicalutilities.phial_of_poison": "Phial of Poison",
+  "item.alchemicalutilities.phial_of_swiftness": "Phial of Swiftness",
 
   "block.alchemicalutilities.citrine_block": "Citrine Block",
   "block.alchemicalutilities.alchemical_glass": "Alchemical Glass",

@@ -2,8 +2,7 @@ package net.avamaco.alchemicalutilities.item;
 
 import net.avamaco.alchemicalutilities.AlchemicalUtilities;
 import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
-import net.avamaco.alchemicalutilities.item.custom.PotionUtilityItem;
-import net.avamaco.alchemicalutilities.item.custom.phial.PhialOfRegenerationItem;
+import net.avamaco.alchemicalutilities.item.custom.phial.*;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,9 +22,23 @@ public class ModItems {
     public static final RegistryObject<Item> GLASS_PHIAL = ITEMS.register("glass_phial",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
     public static final RegistryObject<Item> PHIAL_OF_HEALING = ITEMS.register("phial_of_healing",
-            () -> new PotionUtilityItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+            () -> new PhialOfHealingItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
     public static final RegistryObject<Item> PHIAL_OF_REGENERATION = ITEMS.register("phial_of_regeneration",
             () -> new PhialOfRegenerationItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_SWIFTNESS = ITEMS.register("phial_of_swiftness",
+            () -> new PhialOfSwiftnessItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_FIRE_RESISTANCE = ITEMS.register("phial_of_fire_resistance",
+            () -> new PhialOfFireResistanceItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_NIGHT_VISION = ITEMS.register("phial_of_night_vision",
+            () -> new PhialOfNightVisionItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_LEAPING = ITEMS.register("phial_of_leaping",
+            () -> new PhialOfLeapingItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_INVISIBILITY = ITEMS.register("phial_of_invisibility",
+            () -> new PhialOfInvisibilityItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_POISON = ITEMS.register("phial_of_poison",
+            () -> new PhialOfPoisonItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_HARMING = ITEMS.register("phial_of_harming",
+            () -> new PhialOfHarmingItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
