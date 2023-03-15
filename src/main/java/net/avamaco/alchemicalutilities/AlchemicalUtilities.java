@@ -2,7 +2,11 @@ package net.avamaco.alchemicalutilities;
 
 import com.mojang.logging.LogUtils;
 import net.avamaco.alchemicalutilities.block.ModBlocks;
+import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
 import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.screen.AlchemicalStationScreen;
+import net.avamaco.alchemicalutilities.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
@@ -30,6 +34,9 @@ public class AlchemicalUtilities
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
 
+        ModBlockEntities.register(eventBus);
+        ModMenuTypes.register(eventBus);
+
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
 
@@ -40,6 +47,8 @@ public class AlchemicalUtilities
     private void clientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ALCHEMICAL_GLASS.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ALCHEMICAL_STATION.get(), RenderType.translucent());
+
+        MenuScreens.register(ModMenuTypes.ALCHEMICAL_STATION_MENU.get(), AlchemicalStationScreen::new);
     }
 
     private void setup(final FMLCommonSetupEvent event)
