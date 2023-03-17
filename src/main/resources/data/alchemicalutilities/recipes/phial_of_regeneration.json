@@ -1,0 +1,14 @@
+{
+  "type": "alchemicalutilities:alchemical_crafting",
+  "ingredients": [
+    {
+      "item": "alchemicalutilities:glass_phial"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "output": {
+    "item": "alchemicalutilities:phial_of_regeneration"
+  }
+}

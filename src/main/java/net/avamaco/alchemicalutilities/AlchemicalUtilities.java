@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.avamaco.alchemicalutilities.block.ModBlocks;
 import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
 import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.recipe.ModRecipes;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationScreen;
 import net.avamaco.alchemicalutilities.screen.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -36,6 +37,7 @@ public class AlchemicalUtilities
 
         ModBlockEntities.register(eventBus);
         ModMenuTypes.register(eventBus);
+        ModRecipes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);

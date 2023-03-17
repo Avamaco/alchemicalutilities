@@ -6,10 +6,7 @@ import net.avamaco.alchemicalutilities.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -22,25 +19,42 @@ public class AlchemicalStationMenu extends AbstractContainerMenu {
     private final AlchemicalStationBlockEntity blockEntity;
     private final Level level;
 
+    private final ContainerData data;
+
     public AlchemicalStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public AlchemicalStationMenu(int pContainerId, Inventory inv, BlockEntity entity) {
+    public AlchemicalStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.ALCHEMICAL_STATION_MENU.get(), pContainerId);
-        checkContainerSize(inv, 4);
+        checkContainerSize(inv, 4); // throws an exception if the size doesn't add up
         blockEntity = ((AlchemicalStationBlockEntity)entity);
         this.level = inv.player.level;
+        this.data = data;
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 52, 27));
-            this.addSlot(new SlotItemHandler(handler, 1, 52, 47));
-            this.addSlot(new ModResultSlot(handler, 2, 108, 27));
-            this.addSlot(new ModResultSlot(handler, 3, 108, 47));
+            this.addSlot(new SlotItemHandler(handler, 0, 52, 25));
+            this.addSlot(new SlotItemHandler(handler, 1, 52, 45));
+            this.addSlot(new ModResultSlot(handler, 2, 108, 25));
+            this.addSlot(new ModResultSlot(handler, 3, 108, 45));
         });
+
+        addDataSlots(data);
+    }
+
+    public boolean isCrafting() {
+        return data.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        int progress = data.get(0);
+        int maxProgress = data.get(1);
+        int progressArrowSize = 29;
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -103,14 +117,14 @@ public class AlchemicalStationMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 86 + i * 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 }

@@ -1,7 +1,7 @@
 package net.avamaco.alchemicalutilities.block.entity.custom;
 
 import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
-import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.recipe.AlchemicalStationRecipe;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,13 +14,11 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -29,6 +27,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class AlchemicalStationBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -41,8 +41,35 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
+    protected final ContainerData data;
+    private int progress = 0;
+    private int maxProgress = 72;
+
     public AlchemicalStationBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.ALCHEMICAL_STATION_BLOCK_ENTITY.get(), pPos, pBlockState);
+        this.data = new ContainerData() {
+            @Override
+            public int get(int pIndex) {
+                switch (pIndex) {
+                    case 0: return AlchemicalStationBlockEntity.this.progress;
+                    case 1: return AlchemicalStationBlockEntity.this.maxProgress;
+                    default: return 0;
+                }
+            }
+
+            @Override
+            public void set(int pIndex, int pValue) {
+                switch (pIndex) {
+                    case 0: AlchemicalStationBlockEntity.this.progress = pValue; break;
+                    case 1: AlchemicalStationBlockEntity.this.maxProgress = pValue; break;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+        };
     }
 
     @Override
@@ -53,7 +80,7 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new AlchemicalStationMenu(pContainerId, pPlayerInventory, this);
+        return new AlchemicalStationMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
     @NotNull
@@ -80,6 +107,7 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
+        pTag.putInt("alchemical_station_progress", progress);
         super.saveAdditional(pTag);
     }
 
@@ -87,6 +115,7 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
+        progress = pTag.getInt("alchemical_station_progress");
     }
 
     public void drops() {
@@ -99,30 +128,71 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, AlchemicalStationBlockEntity pBlockEntity) {
-        if (hasRecipe(pBlockEntity) && hasNotReachedStackLimit(pBlockEntity))
-            craftItem(pBlockEntity);
+        if(hasRecipe(pBlockEntity)) {
+            pBlockEntity.progress++;
+            setChanged(pLevel, pPos, pState);
+            if (pBlockEntity.progress > pBlockEntity.maxProgress) {
+                craftItem(pBlockEntity);
+            }
+        }
+        else {
+            pBlockEntity.resetProgress();
+            setChanged(pLevel, pPos, pState);
+        }
     }
 
+    private void resetProgress() {
+        this.progress = 0;
+    }
+
+
     private static void craftItem(AlchemicalStationBlockEntity entity) {
-        entity.itemHandler.extractItem(0, 1, false);
-        entity.itemHandler.extractItem(1, 1, false);
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
 
-        entity.itemHandler.setStackInSlot(2, new ItemStack(ModItems.PHIAL_OF_REGENERATION.get(),
-                entity.itemHandler.getStackInSlot(2).getCount() + 1));
-        entity.itemHandler.setStackInSlot(3, new ItemStack(Items.GLASS_BOTTLE,
-                entity.itemHandler.getStackInSlot(3).getCount() + 1));
+        Optional<AlchemicalStationRecipe> match = level.getRecipeManager()
+                .getRecipeFor(AlchemicalStationRecipe.Type.INSTANCE, inventory, level);
 
+        if (match.isPresent()) {
+            entity.itemHandler.extractItem(0, 1, false);
+            entity.itemHandler.extractItem(1, 1, false);
+            entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
+                    entity.itemHandler.getStackInSlot(2).getCount() + 1));
+            entity.itemHandler.setStackInSlot(3, new ItemStack(Items.GLASS_BOTTLE,
+                    entity.itemHandler.getStackInSlot(3).getCount() + 1));
+        }
+
+        entity.resetProgress();
     }
 
     private static boolean hasRecipe(AlchemicalStationBlockEntity entity) {
-        boolean hasItemInPhialSlot = entity.itemHandler.getStackInSlot(0).getItem() == ModItems.GLASS_PHIAL.get();
-        boolean hasItemInPotionSlot = PotionUtils.getPotion(entity.itemHandler.getStackInSlot(1)) == Potions.REGENERATION;
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
 
-        return hasItemInPhialSlot && hasItemInPotionSlot;
+        Optional<AlchemicalStationRecipe> match = level.getRecipeManager()
+                .getRecipeFor(AlchemicalStationRecipe.Type.INSTANCE, inventory, level);
+
+        return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem());
     }
 
-    private static boolean hasNotReachedStackLimit(AlchemicalStationBlockEntity entity) {
-        return entity.itemHandler.getStackInSlot(2).getCount() < entity.itemHandler.getStackInSlot(2).getMaxStackSize() &&
-                entity.itemHandler.getStackInSlot(3).getCount() < entity.itemHandler.getStackInSlot(3).getMaxStackSize();
+    private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
+        if (inventory.getContainerSize() < 4)
+            throw new RuntimeException("Inventory has too few slos!!!");
+        return (inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty())
+                && (inventory.getItem(3).getItem() == output.getItem() || inventory.getItem(3).isEmpty());
+    }
+
+    private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
+        if (inventory.getContainerSize() < 4)
+            throw new RuntimeException("Inventory has too few slos!!!");
+        return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount()
+                && inventory.getItem(3).getMaxStackSize() > inventory.getItem(3).getCount();
     }
 }
