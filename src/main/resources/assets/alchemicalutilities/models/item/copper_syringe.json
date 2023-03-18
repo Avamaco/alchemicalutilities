@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "charged": 1
+        "alchemicalutilities:charged": 1.0
       },
       "model": "alchemicalutilities:item/copper_syringe_full"
     }

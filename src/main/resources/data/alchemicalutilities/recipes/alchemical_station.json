@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PBP",
+    "###"
+  ],
+  "key": {
+    "P": {
+      "item": "alchemicalutilities:glass_phial"
+    },
+    "#": {
+      "item": "minecraft:stone"
+    },
+    "B": {
+      "item": "minecraft:brewing_stand"
+    }
+  },
+  "result": {
+    "item": "alchemicalutilities:alchemical_station"
+  }
+}

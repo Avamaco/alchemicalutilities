@@ -8,10 +8,10 @@
       "type": "forge:nbt",
       "item": "minecraft:potion",
       "count": 1,
-      "nbt": "{Potion:\"minecraft:regeneration\"}"
+      "nbt": "{Potion:\"minecraft:poison\"}"
     }
   ],
   "output": {
-    "item": "alchemicalutilities:phial_of_regeneration"
+    "item": "alchemicalutilities:phial_of_poison"
   }
 }

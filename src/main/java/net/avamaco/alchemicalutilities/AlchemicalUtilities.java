@@ -10,6 +10,8 @@ import net.avamaco.alchemicalutilities.screen.ModMenuTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -51,6 +53,16 @@ public class AlchemicalUtilities
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ALCHEMICAL_STATION.get(), RenderType.translucent());
 
         MenuScreens.register(ModMenuTypes.ALCHEMICAL_STATION_MENU.get(), AlchemicalStationScreen::new);
+
+        event.enqueueWork(() ->
+                {
+                    ItemProperties.register(ModItems.COPPER_SYRINGE.get(),
+                            new ResourceLocation(AlchemicalUtilities.MOD_ID, "charged"),
+                            (stack, level, living, id) -> {
+                        return stack.getTag().getBoolean("Charged") ? 1.0F : 0.0F;
+                            });
+                }
+        );
     }
 
     private void setup(final FMLCommonSetupEvent event)
