@@ -39,6 +39,16 @@ public class ModItems {
             () -> new PhialOfPoisonItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
     public static final RegistryObject<Item> PHIAL_OF_HARMING = ITEMS.register("phial_of_harming",
             () -> new PhialOfHarmingItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_SLOW_FALLING = ITEMS.register("phial_of_slow_falling",
+            () -> new PhialOfSlowFallingItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_SLOWNESS = ITEMS.register("phial_of_slowness",
+            () -> new PhialOfSlownessItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_STRENGTH = ITEMS.register("phial_of_strength",
+            () -> new PhialOfStrengthItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_WATER_BREATHING = ITEMS.register("phial_of_water_breathing",
+            () -> new PhialOfWaterBreathingItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_WEAKNESS = ITEMS.register("phial_of_weakness",
+            () -> new PhialOfWeaknessItem(new Item.Properties().tab(ModCreativeModeTab.MYFIRST_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

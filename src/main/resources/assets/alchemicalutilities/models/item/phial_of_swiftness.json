@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "alchemicalutilities:item/potions/phial_of_swiftness"
+    "layer0": "alchemicalutilities:item/glass_phial",
+    "layer1": "alchemicalutilities:item/glass_phial_overlay"
   }
 }

@@ -9,6 +9,11 @@
     "alchemicalutilities:phial_of_leaping",
     "alchemicalutilities:phial_of_night_vision",
     "alchemicalutilities:phial_of_poison",
-    "alchemicalutilities:phial_of_swiftness"
+    "alchemicalutilities:phial_of_swiftness",
+    "alchemicalutilities:phial_of_slow_falling",
+    "alchemicalutilities:phial_of_slowness",
+    "alchemicalutilities:phial_of_strength",
+    "alchemicalutilities:phial_of_water_breathing",
+    "alchemicalutilities:phial_of_weakness"
   ]
 }

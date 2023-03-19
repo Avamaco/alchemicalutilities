@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.avamaco.alchemicalutilities.block.ModBlocks;
 import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
 import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.recipe.ModRecipes;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationScreen;
 import net.avamaco.alchemicalutilities.screen.ModMenuTypes;
@@ -59,7 +60,7 @@ public class AlchemicalUtilities
                     ItemProperties.register(ModItems.COPPER_SYRINGE.get(),
                             new ResourceLocation(AlchemicalUtilities.MOD_ID, "charged"),
                             (stack, level, living, id) -> {
-                        return stack.getTag().getBoolean("Charged") ? 1.0F : 0.0F;
+                        return CopperSyringeItem.isCharged(stack) ? 1.0F : 0.0F;
                             });
                 }
         );

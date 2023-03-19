@@ -45,8 +45,8 @@ public class CopperSyringeItem extends Item {
             return;
         }
         ItemStack usedPhial = getChargedPhial(syringe);
-        if (usedPhial.getItem() instanceof PotionUtilityItem) {
-            ((PotionUtilityItem) usedPhial.getItem()).UseOnEntity(pPlayer);
+        if (usedPhial.getItem() instanceof AlchemicalUtilityItem) {
+            ((AlchemicalUtilityItem) usedPhial.getItem()).UseOnEntity(pPlayer);
         }
         clearChargedPhial(syringe);
     }
@@ -61,7 +61,7 @@ public class CopperSyringeItem extends Item {
 
     public static boolean isCharged(ItemStack itemStack) {
         CompoundTag compoundtag = itemStack.getTag();
-        return compoundtag != null && compoundtag.getBoolean("Charged");
+        return compoundtag != null && compoundtag.contains("Charged") && compoundtag.getBoolean("Charged");
     }
 
     public static void setCharged(ItemStack itemStack, boolean pIsCharged) {
@@ -162,6 +162,14 @@ public class CopperSyringeItem extends Item {
 
     private static boolean isPhial(ItemStack itemStack) {
         return itemStack.is(ModTags.Items.POTION_PHIALS);
+    }
+
+    public int getColor(ItemStack stack, int layer) {
+        ItemStack phial = getChargedPhial(stack);
+        if (phial != null && phial.getItem() instanceof AlchemicalUtilityItem && layer == 1)
+            return ((AlchemicalUtilityItem) phial.getItem()).getColor(1);
+        else
+            return -1;
     }
 
 }
