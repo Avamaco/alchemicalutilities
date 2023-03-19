@@ -13,7 +13,7 @@ public class PhialOfPoisonItem extends AlchemicalUtilityItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffects.POISON, 440, 0));
+    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+        entity.addEffect(new MobEffectInstance(MobEffects.POISON, 440, 0), user);
     }
 }

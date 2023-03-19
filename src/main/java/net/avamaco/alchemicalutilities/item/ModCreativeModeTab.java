@@ -4,10 +4,10 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 public class ModCreativeModeTab {
-    public static final CreativeModeTab MYFIRST_TAB = new CreativeModeTab("myfirsttab") {
+    public static final CreativeModeTab ALCHEMICAL_TAB = new CreativeModeTab("alchemical_tab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.CITRINE.get());
+            return new ItemStack(ModItems.GLASS_PHIAL.get());
         }
     };
 }

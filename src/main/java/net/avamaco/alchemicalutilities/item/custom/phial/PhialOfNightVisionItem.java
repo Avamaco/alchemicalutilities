@@ -13,7 +13,7 @@ public class PhialOfNightVisionItem extends AlchemicalUtilityItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 900, 0));
+    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+        entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 900, 0), user);
     }
 }

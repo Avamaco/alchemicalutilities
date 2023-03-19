@@ -46,7 +46,7 @@ public class CopperSyringeItem extends Item {
         }
         ItemStack usedPhial = getChargedPhial(syringe);
         if (usedPhial.getItem() instanceof AlchemicalUtilityItem) {
-            ((AlchemicalUtilityItem) usedPhial.getItem()).UseOnEntity(pPlayer);
+            ((AlchemicalUtilityItem) usedPhial.getItem()).UseOnEntity(pPlayer, pPlayer);
         }
         clearChargedPhial(syringe);
     }

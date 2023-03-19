@@ -13,7 +13,7 @@ public class PhialOfSlowFallingItem extends AlchemicalUtilityItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 900, 0));
+    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+        entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 900, 0), user);
     }
 }

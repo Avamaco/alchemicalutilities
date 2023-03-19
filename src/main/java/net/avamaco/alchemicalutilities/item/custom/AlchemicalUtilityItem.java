@@ -11,7 +11,7 @@ public class AlchemicalUtilityItem extends Item {
         this.COLOR = -1;
     }
 
-    public void UseOnEntity(LivingEntity entity) {}
+    public void UseOnEntity(LivingEntity entity, LivingEntity user) {}
 
     public int getColor(int layer) {
         return layer == 1 ? this.COLOR : -1;

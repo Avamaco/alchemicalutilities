@@ -25,13 +25,13 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(4f).requiresCorrectToolForDrops()), ModCreativeModeTab.MYFIRST_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(4f).requiresCorrectToolForDrops()), ModCreativeModeTab.ALCHEMICAL_TAB);
 
     public static final RegistryObject<Block> ALCHEMICAL_GLASS = registerBlock("alchemical_glass",
-            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()), ModCreativeModeTab.MYFIRST_TAB);
+            () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()), ModCreativeModeTab.ALCHEMICAL_TAB);
 
     public static final RegistryObject<Block> ALCHEMICAL_STATION = registerBlock("alchemical_station",
-            () -> new AlchemicalStationBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.MYFIRST_TAB);
+            () -> new AlchemicalStationBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.ALCHEMICAL_TAB);
 
 
     private static <T extends  Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

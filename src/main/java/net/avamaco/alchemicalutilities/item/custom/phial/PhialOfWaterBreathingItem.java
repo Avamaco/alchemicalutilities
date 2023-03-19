@@ -13,7 +13,7 @@ public class PhialOfWaterBreathingItem extends AlchemicalUtilityItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 900, 0));
+    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+        entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 900, 0), user);
     }
 }
