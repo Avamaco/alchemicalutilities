@@ -1,6 +1,7 @@
 package net.avamaco.alchemicalutilities.item;
 
 import net.avamaco.alchemicalutilities.AlchemicalUtilities;
+import net.avamaco.alchemicalutilities.item.custom.AlchemistSwordItem;
 import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.item.custom.phial.*;
 import net.minecraft.world.item.Item;
@@ -18,6 +19,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> COPPER_SYRINGE = ITEMS.register("copper_syringe",
             () -> new CopperSyringeItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> ALCHEMIST_SWORD = ITEMS.register("alchemist_sword",
+            () -> new AlchemistSwordItem(ModTiers.ALCHEMIST, 4, 1.6f,
+                    new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
     public static final RegistryObject<Item> GLASS_PHIAL = ITEMS.register("glass_phial",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
