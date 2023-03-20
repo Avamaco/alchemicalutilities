@@ -1,5 +1,6 @@
 package net.avamaco.alchemicalutilities.item.custom;
 
+import net.avamaco.alchemicalutilities.util.InventoryUtil;
 import net.avamaco.alchemicalutilities.util.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -28,7 +29,7 @@ public class CopperSyringeItem extends Item {
             pPlayer.getCooldowns().addCooldown(this, 15);
             return InteractionResultHolder.consume(itemstack);
         }
-        else if (checkForPhial(pPlayer)) {
+        else if (InventoryUtil.checkForPhial(pPlayer)) {
             loadPhial(pPlayer, itemstack);
             pPlayer.getCooldowns().addCooldown(this, 60);
             return InteractionResultHolder.consume(itemstack);
@@ -111,11 +112,11 @@ public class CopperSyringeItem extends Item {
     }
 
     private static boolean loadPhial(Player pShooter, ItemStack pStack) {
-        if (!(checkForPhial(pShooter))) {
+        if (!(InventoryUtil.checkForPhial(pShooter))) {
             return false;
         }
         ItemStack itemstack;
-        ItemStack phialStack = pShooter.getInventory().getItem(getFirstPhial(pShooter));
+        ItemStack phialStack = pShooter.getInventory().getItem(InventoryUtil.getFirstPhial(pShooter));
 
         itemstack = phialStack.split(1);
         if (phialStack.isEmpty()) {
@@ -124,26 +125,6 @@ public class CopperSyringeItem extends Item {
 
         addChargedPhial(pStack, itemstack);
         return true;
-    }
-
-    private static int getFirstPhial(Player player) {
-        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
-            ItemStack currentStack = player.getInventory().getItem(i);
-            if (!currentStack.isEmpty() && isPhial(currentStack)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private static boolean checkForPhial(Player player) {
-        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
-            ItemStack currentStack = player.getInventory().getItem(i);
-            if (!currentStack.isEmpty() && isPhial(currentStack)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override
@@ -158,10 +139,6 @@ public class CopperSyringeItem extends Item {
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-    }
-
-    private static boolean isPhial(ItemStack itemStack) {
-        return itemStack.is(ModTags.Items.POTION_PHIALS);
     }
 
     public int getColor(ItemStack stack, int layer) {
