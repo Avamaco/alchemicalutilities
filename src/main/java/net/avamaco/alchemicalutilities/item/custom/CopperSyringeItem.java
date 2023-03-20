@@ -1,7 +1,6 @@
 package net.avamaco.alchemicalutilities.item.custom;
 
 import net.avamaco.alchemicalutilities.util.InventoryUtil;
-import net.avamaco.alchemicalutilities.util.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -46,8 +45,8 @@ public class CopperSyringeItem extends Item {
             return;
         }
         ItemStack usedPhial = getChargedPhial(syringe);
-        if (usedPhial.getItem() instanceof AlchemicalUtilityItem) {
-            ((AlchemicalUtilityItem) usedPhial.getItem()).UseOnEntity(pPlayer, pPlayer);
+        if (usedPhial.getItem() instanceof PotionPhialItem) {
+            ((PotionPhialItem) usedPhial.getItem()).UseOnEntity(pPlayer, pPlayer);
         }
         clearChargedPhial(syringe);
     }
@@ -143,8 +142,8 @@ public class CopperSyringeItem extends Item {
 
     public int getColor(ItemStack stack, int layer) {
         ItemStack phial = getChargedPhial(stack);
-        if (phial != null && phial.getItem() instanceof AlchemicalUtilityItem && layer == 1)
-            return ((AlchemicalUtilityItem) phial.getItem()).getColor(1);
+        if (phial != null && phial.getItem() instanceof PotionPhialItem && layer == 1)
+            return ((PotionPhialItem) phial.getItem()).getColor(1);
         else
             return -1;
     }

@@ -3,10 +3,10 @@ package net.avamaco.alchemicalutilities.item.custom;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 
-public class AlchemicalUtilityItem extends Item {
+public class PotionPhialItem extends Item {
 
     protected int COLOR;
-    public AlchemicalUtilityItem(Item.Properties pProperties) {
+    public PotionPhialItem(Item.Properties pProperties) {
         super(pProperties);
         this.COLOR = -1;
     }

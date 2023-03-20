@@ -1,5 +1,6 @@
 package net.avamaco.alchemicalutilities.util;
 
+import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
@@ -24,7 +25,10 @@ public class InventoryUtil {
         return false;
     }
 
-    private static boolean isPhial(ItemStack itemStack) {
+    /*private static boolean isPhial(ItemStack itemStack) {
         return itemStack.is(ModTags.Items.POTION_PHIALS);
+    }*/
+    private static boolean isPhial(ItemStack itemStack) {
+        return itemStack.getItem() instanceof PotionPhialItem;
     }
 }

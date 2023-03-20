@@ -1,12 +1,12 @@
 package net.avamaco.alchemicalutilities.item.custom.phial;
 
-import net.avamaco.alchemicalutilities.item.custom.AlchemicalUtilityItem;
+import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 
-public class PhialOfHealingItem extends AlchemicalUtilityItem {
+public class PhialOfHealingItem extends PotionPhialItem {
 
 
     public PhialOfHealingItem(Item.Properties pProperties) {

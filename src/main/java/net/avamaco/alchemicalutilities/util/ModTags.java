@@ -20,7 +20,7 @@ public class ModTags {
     }
 
     public static class Items {
-        public static final TagKey<Item> POTION_PHIALS = tag("potion_phials");
+        public static final TagKey<Item> POTION_PHIALS = tag("potion_phials"); // unused currently
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(AlchemicalUtilities.MOD_ID, name));

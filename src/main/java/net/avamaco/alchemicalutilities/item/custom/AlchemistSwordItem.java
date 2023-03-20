@@ -24,8 +24,8 @@ public class AlchemistSwordItem extends SwordItem {
             return;
         ItemStack phialStack = player.getInventory().getItem(InventoryUtil.getFirstPhial(player));
 
-        if (phialStack.getItem() instanceof AlchemicalUtilityItem) {
-            ((AlchemicalUtilityItem) phialStack.getItem()).UseOnEntity(entity, player);
+        if (phialStack.getItem() instanceof PotionPhialItem) {
+            ((PotionPhialItem) phialStack.getItem()).UseOnEntity(entity, player);
 
             phialStack.shrink(1);
             if (phialStack.isEmpty()) {
