@@ -3,6 +3,7 @@ package net.avamaco.alchemicalutilities;
 import com.mojang.logging.LogUtils;
 import net.avamaco.alchemicalutilities.block.ModBlocks;
 import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
+import net.avamaco.alchemicalutilities.entity.ModEntityTypes;
 import net.avamaco.alchemicalutilities.item.ModItems;
 import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.recipe.ModRecipes;
@@ -41,6 +42,8 @@ public class AlchemicalUtilities
         ModBlockEntities.register(eventBus);
         ModMenuTypes.register(eventBus);
         ModRecipes.register(eventBus);
+
+        ModEntityTypes.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
