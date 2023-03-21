@@ -56,4 +56,12 @@ public class PhialGrenadeItem extends Item {
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
+
+    public int getColor(ItemStack stack, int layer) {
+        ItemStack phial = PhialsUtil.getChargedPhial(stack);
+        if (phial != null && phial.getItem() instanceof PotionPhialItem && layer == 1)
+            return ((PotionPhialItem) phial.getItem()).getColor(1);
+        else
+            return -1;
+    }
 }

@@ -21,6 +21,6 @@ public class PhialOfFireResistanceItem extends PotionPhialItem {
 
     @Override
     public void UseExplosion(Vec3 position, Entity user) {
-        makeAreaOfEffectCloud(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 900, 0), user, position);
+        makeAreaOfEffectCloud(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 100, 0), user, position);
     }
 }

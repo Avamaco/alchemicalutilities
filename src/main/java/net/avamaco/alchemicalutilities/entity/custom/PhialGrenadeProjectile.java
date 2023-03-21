@@ -54,6 +54,5 @@ public class PhialGrenadeProjectile extends ThrowableItemProjectile {
             this.level.broadcastEntityEvent(this, (byte)3);
             this.discard();
         }
-
     }
 }

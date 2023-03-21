@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "alchemicalutilities:item/phial_grenade"
+    "layer0": "alchemicalutilities:item/phial_grenade",
+    "layer1": "alchemicalutilities:item/phial_grenade_overlay"
   }
 }
