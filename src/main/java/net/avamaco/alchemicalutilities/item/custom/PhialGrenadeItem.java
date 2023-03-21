@@ -2,6 +2,9 @@ package net.avamaco.alchemicalutilities.item.custom;
 
 import net.avamaco.alchemicalutilities.entity.ModEntityTypes;
 import net.avamaco.alchemicalutilities.entity.custom.PhialGrenadeProjectile;
+import net.avamaco.alchemicalutilities.util.PhialsUtil;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -12,7 +15,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class PhialGrenadeItem extends Item {
     public PhialGrenadeItem(Properties pProperties) {
@@ -24,7 +31,7 @@ public class PhialGrenadeItem extends Item {
         if (!pLevel.isClientSide) {
             PhialGrenadeProjectile grenade = new PhialGrenadeProjectile(ModEntityTypes.PHIAL_GRENADE.get(), pPlayer, pLevel);
             grenade.setItem(itemstack);
-            grenade.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 1.5F, 1.0F);
+            grenade.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 0.8F, 1.0F);
             pLevel.addFreshEntity(grenade);
         }
 
@@ -34,5 +41,19 @@ public class PhialGrenadeItem extends Item {
         }
 
         return InteractionResultHolder.sidedSuccess(itemstack, pLevel.isClientSide());
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+
+        if (PhialsUtil.getChargedPhial(pStack) == null) {
+            pTooltipComponents.add(new TextComponent("Empty"));
+        }
+        else {
+            String currentPhial = PhialsUtil.getChargedPhial(pStack).getItem().toString();
+            pTooltipComponents.add(new TextComponent(currentPhial));
+        }
+
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }

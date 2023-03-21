@@ -1,12 +1,19 @@
 package net.avamaco.alchemicalutilities.entity.custom;
 
 import net.avamaco.alchemicalutilities.entity.ModEntityTypes;
+import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
+import net.avamaco.alchemicalutilities.util.PhialsUtil;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class PhialGrenadeProjectile extends ThrowableItemProjectile {
 
@@ -23,9 +30,30 @@ public class PhialGrenadeProjectile extends ThrowableItemProjectile {
         super(pEntityType, pShooter, pLevel);
     }
 
+    @Override
+    protected float getGravity() {
+        return 0.04F;
+    }
 
     @Override
     protected Item getDefaultItem() {
-        return null;
+        return ModItems.PHIAL_GRENADE.get();
+    }
+
+    protected void onHit(HitResult pResult) {
+        super.onHit(pResult);
+
+        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.0F, Explosion.BlockInteraction.NONE);
+
+        ItemStack phialStack = PhialsUtil.getChargedPhial(this.getItem());
+        if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem) {
+            ((PotionPhialItem) phialStack.getItem()).UseExplosion(this.position(), this.getOwner());
+        }
+
+        if (!this.level.isClientSide) {
+            this.level.broadcastEntityEvent(this, (byte)3);
+            this.discard();
+        }
+
     }
 }

@@ -26,7 +26,7 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
     public static final RegistryObject<Item> PHIAL_GRENADE = ITEMS.register("phial_grenade",
-            () -> new PhialGrenadeItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
+            () -> new PhialGrenadeItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(16)));
 
     public static final RegistryObject<Item> GLASS_PHIAL = ITEMS.register("glass_phial",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));

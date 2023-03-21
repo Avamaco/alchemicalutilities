@@ -9,6 +9,7 @@ import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.recipe.ModRecipes;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationScreen;
 import net.avamaco.alchemicalutilities.screen.ModMenuTypes;
+import net.avamaco.alchemicalutilities.util.PhialsUtil;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -63,7 +64,7 @@ public class AlchemicalUtilities
                     ItemProperties.register(ModItems.COPPER_SYRINGE.get(),
                             new ResourceLocation(AlchemicalUtilities.MOD_ID, "charged"),
                             (stack, level, living, id) -> {
-                        return CopperSyringeItem.isCharged(stack) ? 1.0F : 0.0F;
+                        return PhialsUtil.isCharged(stack) ? 1.0F : 0.0F;
                             });
                 }
         );

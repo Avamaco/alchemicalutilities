@@ -1,8 +1,11 @@
 package net.avamaco.alchemicalutilities.block.entity.custom;
 
 import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
+import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.avamaco.alchemicalutilities.recipe.AlchemicalStationRecipe;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationMenu;
+import net.avamaco.alchemicalutilities.util.PhialsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -135,6 +138,13 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
                 craftItem(pBlockEntity);
             }
         }
+        else if (hasGrenadeRecipe(pBlockEntity)) {
+            pBlockEntity.progress++;
+            setChanged(pLevel, pPos, pState);
+            if (pBlockEntity.progress > pBlockEntity.maxProgress) {
+                craftGrenade(pBlockEntity);
+            }
+        }
         else {
             pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
@@ -145,7 +155,7 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
         this.progress = 0;
     }
 
-
+    // item crafting from recipes
     private static void craftItem(AlchemicalStationBlockEntity entity) {
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
@@ -194,5 +204,51 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
             throw new RuntimeException("Inventory has too few slos!!!");
         return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount()
                 && inventory.getItem(3).getMaxStackSize() > inventory.getItem(3).getCount();
+    }
+
+    // grenade crafting (kinda hardcoded)
+
+    private static void craftGrenade(AlchemicalStationBlockEntity entity) {
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+
+        if (hasGrenadeRecipe(entity)) {
+            ItemStack result = new ItemStack(ModItems.PHIAL_GRENADE.get(), entity.itemHandler.getStackInSlot(2).getCount() + 1);
+            ItemStack toCharge = inventory.getItem(1).copy();
+            toCharge.setCount(1);
+            PhialsUtil.addChargedPhial(result, toCharge);
+            entity.itemHandler.extractItem(0, 1, false);
+            entity.itemHandler.extractItem(1, 1, false);
+            entity.itemHandler.setStackInSlot(2, result);
+            entity.itemHandler.setStackInSlot(3, new ItemStack(ModItems.GLASS_PHIAL.get(),
+                    entity.itemHandler.getStackInSlot(3).getCount() + 1));
+        }
+
+        entity.resetProgress();
+    }
+
+    private static boolean hasGrenadeRecipe(AlchemicalStationBlockEntity entity) {
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+
+        return inventory.getItem(0).getItem() == ModItems.PHIAL_GRENADE.get()
+                && inventory.getItem(1).getItem() instanceof PotionPhialItem
+                && canInsertAmountIntoOutputSlot(inventory)
+                && canInsertGrenadeIntoOutputSlot(inventory);
+    }
+
+    private static boolean canInsertGrenadeIntoOutputSlot(SimpleContainer inventory) {
+        if (inventory.getContainerSize() < 4)
+            throw new RuntimeException("Inventory has too few slos!!!");
+        return ((inventory.getItem(2).getItem() == ModItems.PHIAL_GRENADE.get()
+                    && PhialsUtil.getChargedPhial(inventory.getItem(2)).getItem() == inventory.getItem(1).getItem())
+                    || inventory.getItem(2).isEmpty())
+                && (inventory.getItem(3).getItem() == ModItems.GLASS_PHIAL.get() || inventory.getItem(3).isEmpty());
     }
 }
