@@ -2,6 +2,7 @@ package net.avamaco.alchemicalutilities.block;
 
 import net.avamaco.alchemicalutilities.AlchemicalUtilities;
 import net.avamaco.alchemicalutilities.block.custom.AlchemicalStationBlock;
+import net.avamaco.alchemicalutilities.block.dispenser.BehaviourGrenade;
 import net.avamaco.alchemicalutilities.item.ModCreativeModeTab;
 import net.avamaco.alchemicalutilities.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.GlassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -42,6 +44,10 @@ public class ModBlocks {
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+    }
+
+    public static void addDispenserBehaviours() {
+        DispenserBlock.registerBehavior(ModItems.PHIAL_GRENADE.get(), new BehaviourGrenade());
     }
 
     public static void register(IEventBus eventBus) {

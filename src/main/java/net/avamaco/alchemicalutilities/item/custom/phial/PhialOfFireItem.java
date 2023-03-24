@@ -22,7 +22,7 @@ public class PhialOfFireItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseExplosion(Vec3 position, Entity user) {
+    public void UseExplosion(Vec3 position, Entity source) {
         for (int dx = -2; dx <= 2; dx++) {
             for (int dy = -1; dy <= 1; dy++) {
                 for (int dz = -2; dz <= 2; dz++) {
@@ -30,8 +30,8 @@ public class PhialOfFireItem extends PotionPhialItem {
                         continue;
                     Vec3 offsetPos = new Vec3(dx, dy, dz);
                     BlockPos blockpos = new BlockPos(position.add(offsetPos));
-                    if (user.level.isEmptyBlock(blockpos)) {
-                        user.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(user.level, blockpos));
+                    if (source.level.isEmptyBlock(blockpos)) {
+                        source.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(source.level, blockpos));
                     }
                 }
             }

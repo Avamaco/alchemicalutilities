@@ -20,7 +20,7 @@ public class PhialOfRegenerationItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseExplosion(Vec3 position, Entity user) {
-        makeAreaOfEffectCloud(new MobEffectInstance(MobEffects.REGENERATION, 100, 0), user, position);
+    public void UseExplosion(Vec3 position, Entity source) {
+        makeAreaOfEffectCloud(new MobEffectInstance(MobEffects.REGENERATION, 100, 0), source, position);
     }
 }

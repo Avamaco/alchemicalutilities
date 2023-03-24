@@ -75,5 +75,6 @@ public class AlchemicalUtilities
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        ModBlocks.addDispenserBehaviours();
     }
 }
