@@ -13,7 +13,7 @@ public class PhialsUtil {
             ModItems.PHIAL_OF_POISON.get(), ModItems.PHIAL_OF_REGENERATION.get(), ModItems.PHIAL_OF_SWIFTNESS.get(),
             ModItems.PHIAL_OF_SLOW_FALLING.get(), ModItems.PHIAL_OF_SLOWNESS.get(), ModItems.PHIAL_OF_STRENGTH.get(),
             ModItems.PHIAL_OF_WATER_BREATHING.get(), ModItems.PHIAL_OF_WEAKNESS.get(), ModItems.PHIAL_OF_FIRE.get(),
-            ModItems.PHIAL_OF_WARPING.get()};
+            ModItems.PHIAL_OF_WARPING.get(), ModItems.PHIAL_OF_EXPLOSION.get()};
 
     public static boolean isCharged(ItemStack itemStack) {
         CompoundTag compoundtag = itemStack.getTag();
