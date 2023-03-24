@@ -47,7 +47,7 @@ public class PhialGrenadeProjectile extends ThrowableItemProjectile {
 
         ItemStack phialStack = PhialsUtil.getChargedPhial(this.getItem());
         if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem) {
-            ((PotionPhialItem) phialStack.getItem()).UseExplosion(this.position(), this);
+            ((PotionPhialItem) phialStack.getItem()).UseExplosion(this.position(), this, this.getOwner());
         }
 
         if (!this.level.isClientSide) {

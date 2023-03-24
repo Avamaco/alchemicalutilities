@@ -61,6 +61,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> PHIAL_OF_FIRE = ITEMS.register("phial_of_fire",
             () -> new PhialOfFireItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_WARPING = ITEMS.register("phial_of_warping",
+            () -> new PhialOfWarpingItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

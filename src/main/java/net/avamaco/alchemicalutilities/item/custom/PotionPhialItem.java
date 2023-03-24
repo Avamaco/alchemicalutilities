@@ -23,6 +23,10 @@ public class PotionPhialItem extends Item {
 
     public void UseExplosion(Vec3 position, Entity source) {}
 
+    public void UseExplosion(Vec3 position, Entity source, Entity owner) {
+        this.UseExplosion(position, source);
+    }
+
     public int getColor(int layer) {
         return layer == 1 ? this.COLOR : -1;
     }
