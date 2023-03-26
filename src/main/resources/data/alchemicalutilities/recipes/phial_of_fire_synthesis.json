@@ -1,0 +1,20 @@
+{
+  "type": "alchemicalutilities:alchemical_synthesis",
+  "ingredients": [
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "minecraft:netherrack"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "alchemicalutilities:glass_phial"
+    }
+  ],
+  "output": {
+    "item": "alchemicalutilities:phial_of_fire"
+  }
+}

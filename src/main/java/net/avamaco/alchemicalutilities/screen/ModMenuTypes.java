@@ -17,6 +17,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<AlchemicalStationMenu>> ALCHEMICAL_STATION_MENU =
             registerMenuType(AlchemicalStationMenu::new, "alchemical_station_menu");
 
+    public static final RegistryObject<MenuType<SynthesisStationMenu>> SYNTHESIS_STATION_MENU =
+            registerMenuType(SynthesisStationMenu::new, "synthesis_station_menu");
+
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }

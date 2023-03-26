@@ -194,14 +194,14 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
         if (inventory.getContainerSize() < 4)
-            throw new RuntimeException("Inventory has too few slos!!!");
+            throw new RuntimeException("Inventory has too few slots!!!");
         return (inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty())
                 && (inventory.getItem(3).getItem() == Items.GLASS_BOTTLE || inventory.getItem(3).isEmpty());
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {
         if (inventory.getContainerSize() < 4)
-            throw new RuntimeException("Inventory has too few slos!!!");
+            throw new RuntimeException("Inventory has too few slots!!!");
         return inventory.getItem(2).getMaxStackSize() > inventory.getItem(2).getCount()
                 && inventory.getItem(3).getMaxStackSize() > inventory.getItem(3).getCount();
     }

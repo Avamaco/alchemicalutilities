@@ -9,6 +9,7 @@ import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.recipe.ModRecipes;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationScreen;
 import net.avamaco.alchemicalutilities.screen.ModMenuTypes;
+import net.avamaco.alchemicalutilities.screen.SynthesisStationScreen;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -59,6 +60,7 @@ public class AlchemicalUtilities
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.SYNTHESIS_STATION.get(), RenderType.translucent());
 
         MenuScreens.register(ModMenuTypes.ALCHEMICAL_STATION_MENU.get(), AlchemicalStationScreen::new);
+        MenuScreens.register(ModMenuTypes.SYNTHESIS_STATION_MENU.get(), SynthesisStationScreen::new);
 
         event.enqueueWork(() ->
                 {

@@ -14,6 +14,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<AlchemicalStationRecipe>> ALCHEMICAL_CRAFTING_SERIALIZER =
             SERIALIZERS.register("alchemical_crafting", () -> AlchemicalStationRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<SynthesisStationRecipe>> ALCHEMICAL_SYNTHESIS_SERIALIZER =
+            SERIALIZERS.register("alchemical_synthesis", () -> SynthesisStationRecipe.Serializer.INSTANCE);
+
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

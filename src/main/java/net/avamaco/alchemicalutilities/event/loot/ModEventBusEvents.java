@@ -7,6 +7,7 @@ import net.avamaco.alchemicalutilities.item.custom.PhialGrenadeItem;
 import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.recipe.AlchemicalStationRecipe;
+import net.avamaco.alchemicalutilities.recipe.SynthesisStationRecipe;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.Registry;
@@ -23,6 +24,7 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
         Registry.register(Registry.RECIPE_TYPE, AlchemicalStationRecipe.Type.ID, AlchemicalStationRecipe.Type.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, SynthesisStationRecipe.Type.ID, SynthesisStationRecipe.Type.INSTANCE);
     }
 
     @SubscribeEvent
