@@ -14,7 +14,7 @@ public class PhialOfExplosionItem extends PotionPhialItem {
 
     @Override
     public void UseOnEntity(LivingEntity entity, LivingEntity user) {
-        entity.level.explode(entity, entity.getX(), entity.getY(), entity.getZ(), 1.5F, Explosion.BlockInteraction.NONE);
+        entity.level.explode(entity, entity.getX(), entity.getY(0.2D), entity.getZ(), 1.5F, Explosion.BlockInteraction.NONE);
     }
 
     @Override

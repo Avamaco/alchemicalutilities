@@ -59,12 +59,17 @@ public class ModItems {
     public static final RegistryObject<Item> PHIAL_OF_WEAKNESS = ITEMS.register("phial_of_weakness",
             () -> new PhialOfWeaknessItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
+    public static final RegistryObject<Item> PHIAL_OF_LEVITATION = ITEMS.register("phial_of_levitation",
+            () -> new PhialOfLevitationItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
+
     public static final RegistryObject<Item> PHIAL_OF_FIRE = ITEMS.register("phial_of_fire",
             () -> new PhialOfFireItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
     public static final RegistryObject<Item> PHIAL_OF_WARPING = ITEMS.register("phial_of_warping",
             () -> new PhialOfWarpingItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
     public static final RegistryObject<Item> PHIAL_OF_EXPLOSION = ITEMS.register("phial_of_explosion",
             () -> new PhialOfExplosionItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
+    public static final RegistryObject<Item> PHIAL_OF_PROPULSION = ITEMS.register("phial_of_propulsion",
+            () -> new PhialOfPropulsionItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
