@@ -39,7 +39,7 @@ public class PhialOfPropulsionItem extends PotionPhialItem {
                     if (!source.level.isEmptyBlock(blockpos)
                             && PistonBaseBlock.isPushable(blockState, source.level, blockpos, Direction.UP, true, Direction.UP)) {
                         FallingBlockEntity fallingBlockEntity = FallingBlockEntity.fall(source.level, blockpos, source.level.getBlockState(blockpos));
-                        fallingBlockEntity.push((double)dx / 4.0D, 2.0D, (double)dz / 4.0D);
+                        fallingBlockEntity.push((double)dx / (4.0D + source.level.random.nextDouble()), 1.0D, (double)dz / (4.0D + source.level.random.nextDouble()));
                         source.level.destroyBlock(blockpos, false);
                     }
                 }
