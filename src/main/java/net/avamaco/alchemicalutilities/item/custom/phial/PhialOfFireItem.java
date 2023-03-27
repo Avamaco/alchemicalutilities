@@ -2,8 +2,6 @@ package net.avamaco.alchemicalutilities.item.custom.phial;
 
 import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -17,7 +15,7 @@ public class PhialOfFireItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.setSecondsOnFire(15);
     }
 

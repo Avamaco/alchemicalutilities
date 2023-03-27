@@ -15,7 +15,7 @@ public class PhialOfWaterBreathingItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 900, 0), user);
     }
 

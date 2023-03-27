@@ -12,7 +12,7 @@ public class PhialOfWarpingItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         Vec3 direction = user.getLookAngle().scale(10.0F);
         entity.teleportTo(entity.getX() + direction.x, entity.getY() + direction.y, entity.getZ() + direction.z);
     }

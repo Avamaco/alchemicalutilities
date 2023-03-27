@@ -15,7 +15,7 @@ public class PhialOfPoisonItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.POISON, 440, 0), user);
     }
 

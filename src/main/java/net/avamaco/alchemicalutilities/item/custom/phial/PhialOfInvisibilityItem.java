@@ -15,7 +15,7 @@ public class PhialOfInvisibilityItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 900, 0), user);
     }
 

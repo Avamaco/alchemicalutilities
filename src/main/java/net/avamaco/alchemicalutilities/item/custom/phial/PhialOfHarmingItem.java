@@ -15,7 +15,7 @@ public class PhialOfHarmingItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 0), user);
     }
 
@@ -23,4 +23,6 @@ public class PhialOfHarmingItem extends PotionPhialItem {
     public void UseExplosion(Vec3 position, Entity source) {
         makeAreaOfEffectCloud(new MobEffectInstance(MobEffects.HARM, 1, 0), source, position);
     }
+
+
 }

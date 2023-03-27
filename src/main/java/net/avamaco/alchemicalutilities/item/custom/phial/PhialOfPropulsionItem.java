@@ -8,12 +8,9 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
-import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.Tags;
 
 public class PhialOfPropulsionItem extends PotionPhialItem {
     public PhialOfPropulsionItem(Properties pProperties) {
@@ -22,7 +19,7 @@ public class PhialOfPropulsionItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 20, 5), user);
     }
 

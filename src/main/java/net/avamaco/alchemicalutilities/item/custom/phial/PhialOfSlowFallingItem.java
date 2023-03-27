@@ -15,7 +15,7 @@ public class PhialOfSlowFallingItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 900, 0), user);
     }
 

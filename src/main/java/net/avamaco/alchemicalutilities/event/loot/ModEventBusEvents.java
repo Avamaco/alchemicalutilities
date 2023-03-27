@@ -48,5 +48,6 @@ public class ModEventBusEvents {
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypes.PHIAL_GRENADE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.PHIAL_SHOT.get(), ThrownItemRenderer::new);
     }
 }

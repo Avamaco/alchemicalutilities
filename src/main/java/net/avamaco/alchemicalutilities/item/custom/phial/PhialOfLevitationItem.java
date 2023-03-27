@@ -15,7 +15,7 @@ public class PhialOfLevitationItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 200, 0), user);
     }
 

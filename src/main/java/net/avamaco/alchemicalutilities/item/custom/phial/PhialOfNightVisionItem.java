@@ -15,7 +15,7 @@ public class PhialOfNightVisionItem extends PotionPhialItem {
     }
 
     @Override
-    public void UseOnEntity(LivingEntity entity, LivingEntity user) {
+    public void UseOnEntity(LivingEntity entity, Entity user) {
         entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 900, 0), user);
     }
 
