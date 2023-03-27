@@ -3,6 +3,7 @@ package net.avamaco.alchemicalutilities.event.loot;
 import net.avamaco.alchemicalutilities.AlchemicalUtilities;
 import net.avamaco.alchemicalutilities.entity.ModEntityTypes;
 import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.item.custom.AlchemicalCrossbowItem;
 import net.avamaco.alchemicalutilities.item.custom.PhialGrenadeItem;
 import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
@@ -43,6 +44,11 @@ public class ModEventBusEvents {
             if (stack.getItem() instanceof PhialGrenadeItem) return ((PhialGrenadeItem)stack.getItem()).getColor(stack, tint);
             else return -1;
         }, ModItems.PHIAL_GRENADE.get());
+
+        event.getItemColors().register((stack, tint) -> {
+            if (stack.getItem() instanceof AlchemicalCrossbowItem) return ((AlchemicalCrossbowItem)stack.getItem()).getColor(stack, tint);
+            else return -1;
+        }, ModItems.ALCHEMICAL_CROSSBOW.get());
     }
 
     @SubscribeEvent

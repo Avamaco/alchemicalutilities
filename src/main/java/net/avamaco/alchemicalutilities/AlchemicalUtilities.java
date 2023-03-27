@@ -71,6 +71,16 @@ public class AlchemicalUtilities
                             });
                 }
         );
+
+        event.enqueueWork(() ->
+                {
+                    ItemProperties.register(ModItems.ALCHEMICAL_CROSSBOW.get(),
+                            new ResourceLocation(AlchemicalUtilities.MOD_ID, "charged"),
+                            (stack, level, living, id) -> {
+                                return PhialsUtil.isCharged(stack) ? 1.0F : 0.0F;
+                            });
+                }
+        );
     }
 
     private void setup(final FMLCommonSetupEvent event)

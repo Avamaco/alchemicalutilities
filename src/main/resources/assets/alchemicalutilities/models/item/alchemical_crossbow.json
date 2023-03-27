@@ -1,0 +1,14 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "alchemicalutilities:item/alchemical_crossbow"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "alchemicalutilities:charged": 1.0
+      },
+      "model": "alchemicalutilities:item/alchemical_crossbow_loaded"
+    }
+  ]
+}

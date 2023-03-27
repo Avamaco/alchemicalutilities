@@ -38,7 +38,7 @@ public class PhialShotProjectile extends ThrowableItemProjectile {
         super.onHitEntity(pResult);
 
         if (pResult.getEntity() instanceof LivingEntity) {
-            ItemStack phialStack = PhialsUtil.getChargedPhial(this.getItem());
+            ItemStack phialStack = this.getItem();
             if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem) {
                 ((PotionPhialItem) phialStack.getItem()).UseOnEntity((LivingEntity)pResult.getEntity(), this.getOwner());
             }
@@ -54,7 +54,7 @@ public class PhialShotProjectile extends ThrowableItemProjectile {
     protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
 
-        ItemStack phialStack = PhialsUtil.getChargedPhial(this.getItem());
+        ItemStack phialStack = this.getItem();
         if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem) {
             ((PotionPhialItem) phialStack.getItem()).UseOnBlock(this.position(), pResult.getBlockPos(), pResult.getDirection(), this);
         }

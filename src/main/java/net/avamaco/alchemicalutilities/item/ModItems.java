@@ -1,6 +1,7 @@
 package net.avamaco.alchemicalutilities.item;
 
 import net.avamaco.alchemicalutilities.AlchemicalUtilities;
+import net.avamaco.alchemicalutilities.item.custom.AlchemicalCrossbowItem;
 import net.avamaco.alchemicalutilities.item.custom.AlchemistSwordItem;
 import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.item.custom.PhialGrenadeItem;
@@ -20,6 +21,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> COPPER_SYRINGE = ITEMS.register("copper_syringe",
             () -> new CopperSyringeItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> ALCHEMICAL_CROSSBOW = ITEMS.register("alchemical_crossbow",
+            () -> new AlchemicalCrossbowItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
 
     public static final RegistryObject<Item> ALCHEMIST_SWORD = ITEMS.register("alchemist_sword",
             () -> new AlchemistSwordItem(ModTiers.ALCHEMIST, 4, 1.6f,
