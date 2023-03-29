@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CopperSyringeItem extends Item {
+    final private int minimumChargeTime = 40;
 
     public CopperSyringeItem(Item.Properties pProperties) {
         super(pProperties);
@@ -26,12 +27,11 @@ public class CopperSyringeItem extends Item {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (PhialsUtil.isCharged(itemstack)) {
             inject(pPlayer, itemstack);
-            pPlayer.getCooldowns().addCooldown(this, 15);
+            pPlayer.getCooldowns().addCooldown(this, 10);
             return InteractionResultHolder.consume(itemstack);
         }
         else if (InventoryUtil.checkForPhial(pPlayer)) {
-            loadPhial(pPlayer, itemstack);
-            pPlayer.getCooldowns().addCooldown(this, 60);
+            pPlayer.startUsingItem(pHand);
             return InteractionResultHolder.consume(itemstack);
         }
         else {
@@ -52,23 +52,25 @@ public class CopperSyringeItem extends Item {
         PhialsUtil.clearChargedPhial(syringe);
     }
 
-    public int getUseDuration() {
-        return 40;
+    @Override
+    public int getUseDuration(ItemStack pStack) {
+        return 120;
     }
 
-//    public UseAnim getUseAnimation(ItemStack pStack) {
-//        return UseAnim.BOW;
-//    }
+    @Override
+    public UseAnim getUseAnimation(ItemStack pStack) {
+        return UseAnim.BOW;
+    }
 
-    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving, int pTimeLeft) {
-        if (!(pEntityLiving instanceof Player)) {
+    @Override
+    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity, int pTimeCharged) {
+        if (!(pLivingEntity instanceof Player)) {
             return;
         }
-        Player pPlayer = (Player) pEntityLiving;
-        pPlayer.sendMessage(new TextComponent("Skill Issue."), pPlayer.getUUID());
-        int i = this.getUseDuration() - pTimeLeft;
-        if (i >= this.getUseDuration() - 3 && !PhialsUtil.isCharged(pStack) && loadPhial(pPlayer, pStack)) {
-            PhialsUtil.setCharged(pStack, true);
+        Player pPlayer = (Player) pLivingEntity;
+        int i = this.getUseDuration(pStack) - pTimeCharged;
+        if (i >= minimumChargeTime) {
+            loadPhial(pPlayer, pStack);
         }
     }
 

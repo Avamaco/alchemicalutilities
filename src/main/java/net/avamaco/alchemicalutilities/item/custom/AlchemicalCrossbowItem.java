@@ -5,20 +5,25 @@ import net.avamaco.alchemicalutilities.entity.custom.PhialGrenadeProjectile;
 import net.avamaco.alchemicalutilities.entity.custom.PhialShotProjectile;
 import net.avamaco.alchemicalutilities.util.InventoryUtil;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class AlchemicalCrossbowItem extends Item {
+
+    final private static int minimumChargeTime = 40;
     public AlchemicalCrossbowItem(Properties pProperties) {
         super(pProperties);
     }
@@ -28,12 +33,13 @@ public class AlchemicalCrossbowItem extends Item {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (PhialsUtil.isCharged(itemstack)) {
             shootPhial(pPlayer, pLevel, itemstack);
-            pPlayer.getCooldowns().addCooldown(this, 15);
+            pPlayer.getCooldowns().addCooldown(this, 10);
             return InteractionResultHolder.consume(itemstack);
         }
         else if (InventoryUtil.checkForPhial(pPlayer)) {
-            loadPhial(pPlayer, itemstack);
-            pPlayer.getCooldowns().addCooldown(this, 40);
+            pPlayer.startUsingItem(pHand);
+            CompoundTag compoundtag = itemstack.getOrCreateTag();
+            compoundtag.putBoolean("Charging", true);
             return InteractionResultHolder.consume(itemstack);
         }
         else {
@@ -50,6 +56,32 @@ public class AlchemicalCrossbowItem extends Item {
             level.addFreshEntity(shot);
         }
         PhialsUtil.clearChargedPhial(itemStack);
+    }
+
+    @Override
+    public int getUseDuration(ItemStack pStack) {
+        return 120;
+    }
+
+    public static int getChargeDuration() { return minimumChargeTime; }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack pStack) {
+        return UseAnim.CROSSBOW;
+    }
+
+    @Override
+    public void releaseUsing(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity, int pTimeCharged) {
+        if (!(pLivingEntity instanceof Player)) {
+            return;
+        }
+        Player pPlayer = (Player) pLivingEntity;
+        int i = this.getUseDuration(pStack) - pTimeCharged;
+        if (i >= minimumChargeTime) {
+            loadPhial(pPlayer, pStack);
+        }
+        CompoundTag compoundtag = pStack.getOrCreateTag();
+        compoundtag.putBoolean("Charging", false);
     }
 
     private static boolean loadPhial(Player pShooter, ItemStack pStack) {
@@ -80,6 +112,11 @@ public class AlchemicalCrossbowItem extends Item {
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
+    public static boolean isCharging(ItemStack itemStack) {
+        CompoundTag compoundtag = itemStack.getTag();
+        return compoundtag != null && compoundtag.contains("Charging") && compoundtag.getBoolean("Charging");
     }
 
     public int getColor(ItemStack stack, int layer) {

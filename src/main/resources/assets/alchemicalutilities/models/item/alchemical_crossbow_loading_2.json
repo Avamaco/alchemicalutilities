@@ -1,0 +1,6 @@
+{
+  "parent": "alchemicalutilities:item/alchemical_crossbow_loading_0",
+  "textures": {
+    "layer0": "alchemicalutilities:item/alchemical_crossbow_loading_end"
+  }
+}

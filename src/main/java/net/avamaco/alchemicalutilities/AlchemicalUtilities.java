@@ -5,6 +5,7 @@ import net.avamaco.alchemicalutilities.block.ModBlocks;
 import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
 import net.avamaco.alchemicalutilities.entity.ModEntityTypes;
 import net.avamaco.alchemicalutilities.item.ModItems;
+import net.avamaco.alchemicalutilities.item.custom.AlchemicalCrossbowItem;
 import net.avamaco.alchemicalutilities.item.custom.CopperSyringeItem;
 import net.avamaco.alchemicalutilities.recipe.ModRecipes;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationScreen;
@@ -69,18 +70,24 @@ public class AlchemicalUtilities
                             (stack, level, living, id) -> {
                         return PhialsUtil.isCharged(stack) ? 1.0F : 0.0F;
                             });
-                }
-        );
 
-        event.enqueueWork(() ->
-                {
                     ItemProperties.register(ModItems.ALCHEMICAL_CROSSBOW.get(),
                             new ResourceLocation(AlchemicalUtilities.MOD_ID, "charged"),
                             (stack, level, living, id) -> {
                                 return PhialsUtil.isCharged(stack) ? 1.0F : 0.0F;
                             });
+
+                    ItemProperties.register(ModItems.ALCHEMICAL_CROSSBOW.get(),
+                            new ResourceLocation(AlchemicalUtilities.MOD_ID, "charging"),
+                            (stack, level, living, id) -> {
+                                if (living == null || !AlchemicalCrossbowItem.isCharging(stack))
+                                    return 0.0F;
+                                return PhialsUtil.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - living.getUseItemRemainingTicks()) / (float)AlchemicalCrossbowItem.getChargeDuration();
+                            });
                 }
         );
+
+
     }
 
     private void setup(final FMLCommonSetupEvent event)

@@ -1,5 +1,5 @@
 {
-  "parent": "item/handheld",
+  "parent": "alchemicalutilities:item/alchemical_crossbow",
   "textures": {
     "layer0": "alchemicalutilities:item/alchemical_crossbow_loaded",
     "layer1": "alchemicalutilities:item/alchemical_crossbow_loaded_overlay"
