@@ -68,7 +68,7 @@ public class AlchemicalUtilities
                     ItemProperties.register(ModItems.COPPER_SYRINGE.get(),
                             new ResourceLocation(AlchemicalUtilities.MOD_ID, "charged"),
                             (stack, level, living, id) -> {
-                        return PhialsUtil.isCharged(stack) ? 1.0F : 0.0F;
+                                return PhialsUtil.isCharged(stack) ? 1.0F : 0.0F;
                             });
 
                     ItemProperties.register(ModItems.ALCHEMICAL_CROSSBOW.get(),
