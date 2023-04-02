@@ -1,0 +1,17 @@
+{
+  "type": "alchemicalutilities:alchemical_crafting",
+  "ingredients": [
+    {
+      "item": "alchemicalutilities:glass_phial"
+    },
+    {
+      "type": "forge:nbt",
+      "item": "minecraft:potion",
+      "count": 1,
+      "nbt": "{Potion:\"minecraft:fire_resistance\"}"
+    }
+  ],
+  "output": {
+    "item": "alchemicalutilities:phial_of_fire_resistance"
+  }
+}

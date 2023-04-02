@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GXG",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "alchemicalutilities:glass_phial"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "X": {
+      "item": "minecraft:crossbow"
+    }
+  },
+  "result": {
+    "item": "alchemicalutilities:alchemical_crossbow"
+  }
+}

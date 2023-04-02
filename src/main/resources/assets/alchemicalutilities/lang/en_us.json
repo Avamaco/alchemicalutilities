@@ -1,5 +1,4 @@
 {
-  "item.alchemicalutilities.citrine": "Citrine",
   "item.alchemicalutilities.copper_syringe": "Copper Syringe",
   "item.alchemicalutilities.alchemical_crossbow": "Alchemical Crossbow",
   "item.alchemicalutilities.alchemist_sword": "Alchemist's Sword",
@@ -30,7 +29,6 @@
   "item.alchemicalutilities.phial_of_propulsion": "Phial of Propulsion",
   "item.alchemicalutilities.phial_of_smoke": "Phial of Smoke",
 
-  "block.alchemicalutilities.citrine_block": "Citrine Block",
   "block.alchemicalutilities.alchemical_glass": "Alchemical Glass",
   "block.alchemicalutilities.alchemical_station": "Alchemical Station",
   "block.alchemicalutilities.synthesis_station": "Synthesis Station",

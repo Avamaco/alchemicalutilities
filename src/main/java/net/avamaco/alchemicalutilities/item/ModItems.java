@@ -17,9 +17,6 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, AlchemicalUtilities.MOD_ID);
 
-    public static final RegistryObject<Item> CITRINE = ITEMS.register("citrine",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
-
     public static final RegistryObject<Item> COPPER_SYRINGE = ITEMS.register("copper_syringe",
             () -> new CopperSyringeItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
 

@@ -26,10 +26,6 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, AlchemicalUtilities.MOD_ID);
 
-
-    public static final RegistryObject<Block> CITRINE_BLOCK = registerBlock("citrine_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(4f).requiresCorrectToolForDrops()), ModCreativeModeTab.ALCHEMICAL_TAB);
-
     public static final RegistryObject<Block> ALCHEMICAL_GLASS = registerBlock("alchemical_glass",
             () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()), ModCreativeModeTab.ALCHEMICAL_TAB);
 

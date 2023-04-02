@@ -1,0 +1,20 @@
+{
+  "type": "alchemicalutilities:alchemical_synthesis",
+  "ingredients": [
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "minecraft:quartz"
+    },
+    {
+      "item": "alchemicalutilities:glass_phial"
+    }
+  ],
+  "output": {
+    "item": "alchemicalutilities:phial_of_levitation"
+  }
+}

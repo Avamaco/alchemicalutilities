@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    "G G",
+    "ADA"
+  ],
+  "key": {
+    "A": {
+      "item": "alchemicalutilities:alchemical_station"
+    },
+    "G": {
+      "item": "alchemicalutilities:alchemical_glass"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "alchemicalutilities:synthesis_station"
+  }
+}

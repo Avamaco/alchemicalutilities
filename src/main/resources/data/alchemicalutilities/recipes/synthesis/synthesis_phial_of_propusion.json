@@ -1,0 +1,20 @@
+{
+  "type": "alchemicalutilities:alchemical_synthesis",
+  "ingredients": [
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "alchemicalutilities:phial_of_levitation"
+    }
+  ],
+  "output": {
+    "item": "alchemicalutilities:phial_of_propulsion"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "alchemicalutilities:alchemical_synthesis",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:gunpowder"
+    },
+    {
+      "item": "minecraft:coal"
+    },
+    {
+      "item": "alchemicalutilities:glass_phial"
+    }
+  ],
+  "output": {
+    "item": "alchemicalutilities:phial_of_smoke"
+  }
+}

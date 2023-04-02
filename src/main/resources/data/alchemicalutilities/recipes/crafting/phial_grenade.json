@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " F ",
+    "FPF",
+    " F "
+  ],
+  "key": {
+    "P": {
+      "item": "alchemicalutilities:glass_phial"
+    },
+    "F": {
+      "item": "minecraft:fire_charge"
+    }
+  },
+  "result": {
+    "item": "alchemicalutilities:phial_grenade"
+  }
+}
