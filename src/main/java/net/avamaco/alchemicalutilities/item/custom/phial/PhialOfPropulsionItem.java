@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.piston.PistonBaseBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -40,27 +41,47 @@ public class PhialOfPropulsionItem extends PotionPhialItem {
                     // make a new FallingBlockEntity if possible
                     if (!source.level.isEmptyBlock(blockpos)
                             && PistonBaseBlock.isPushable(blockState, source.level, blockpos, Direction.UP, true, Direction.UP)) {
-                        FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(EntityType.FALLING_BLOCK, source.level);
-                        fallingBlockEntity.absMoveTo((double)blockpos.getX() + 0.5D, (double)blockpos.getY(), (double)blockpos.getZ() + 0.5D);
-                        // add velocity
-                        double offsetX = (source.level.random.nextDouble() - 0.5D) / 2.0D;
-                        double offsetZ = (source.level.random.nextDouble() - 0.5D) / 2.0D;
-                        fallingBlockEntity.push((double)dx / 4.0D + offsetX, 1.0D, (double)dz / 4.0D + offsetZ);
-                        // change blockstate by reaching a private field
-                        try {
-                            Field field = fallingBlockEntity.getClass().getDeclaredField("blockState");
-                            field.setAccessible(true);
-                            field.set(fallingBlockEntity, blockState);
-                        }
-                        catch(Exception ignored) {}
-                        // finish adding the FallingBlockEntity
-                        source.level.destroyBlock(blockpos, false);
-                        source.level.addFreshEntity(fallingBlockEntity);
+
+                        double offsetX = (source.level.random.nextDouble() - 0.5D) / 3.0D;
+                        double offsetY = (source.level.random.nextDouble() - 0.5D) / 3.0D;
+                        double offsetZ = (source.level.random.nextDouble() - 0.5D) / 3.0D;
+
+                        launchBlock(blockpos, source.level, (double)dx / 6.0D + offsetX, 1.0D + offsetY, (double)dz / 6.0D + offsetZ);
                     }
                 }
             }
         }
     }
 
+    @Override
+    public void UseOnBlock(Vec3 position, BlockPos blockPos, Direction direction, Entity source) {
+        BlockState blockState = source.level.getBlockState(blockPos);
+        if (!source.level.isEmptyBlock(blockPos)
+                && PistonBaseBlock.isPushable(blockState, source.level, blockPos, direction, true, direction)) {
 
+            double velocityX = direction.getStepX();
+            double velocityY = direction.getStepY();
+            double velocityZ = direction.getStepZ();
+
+            launchBlock(blockPos, source.level, velocityX, velocityY, velocityZ);
+        }
+    }
+
+    private void launchBlock(BlockPos blockPos, Level level, double velocityX, double velocityY, double velocityZ) {
+        BlockState blockState = level.getBlockState(blockPos);
+        FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(EntityType.FALLING_BLOCK, level);
+        fallingBlockEntity.absMoveTo((double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D);
+        // add velocity
+        fallingBlockEntity.push(velocityX, velocityY, velocityZ);
+        // change blockState by reaching a private field
+        try {
+            Field field = fallingBlockEntity.getClass().getDeclaredField("blockState");
+            field.setAccessible(true);
+            field.set(fallingBlockEntity, blockState);
+        }
+        catch(Exception ignored) {}
+        // finish adding the FallingBlockEntity
+        level.destroyBlock(blockPos, false);
+        level.addFreshEntity(fallingBlockEntity);
+    }
 }
