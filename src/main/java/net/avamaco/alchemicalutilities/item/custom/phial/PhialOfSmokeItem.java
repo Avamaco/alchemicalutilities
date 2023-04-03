@@ -41,7 +41,7 @@ public class PhialOfSmokeItem extends PotionPhialItem {
         if (!level.isClientSide()) {
             ((ServerLevel)level).sendParticles(ParticleTypes.SMOKE, x, y, z,  50, 0, 0, 0, 0.15D);
             ((ServerLevel)level).sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z,  75, 0, 0, 0, 0.07D);
-            ((ServerLevel)level).sendParticles(ParticleTypes.FLASH, x, y, z,  3, 0, 0, 0, 0);
+            ((ServerLevel)level).sendParticles(ParticleTypes.FLASH, x, y, z,  1, 0, 0, 0, 0);
         }
     }
 }

@@ -25,9 +25,10 @@ public class SynthesisStationScreen extends AbstractContainerScreen<SynthesisSta
         int y = (height - imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+        this.blit(pPoseStack, x + 25, y + 39, 230, 0, menu.getScaledFuel(), 4);
 
         if (menu.isCrafting()) {
-            blit(pPoseStack, x + 42, y + 26, 176, 0, menu.getScaledProgress(), 29);
+            renderArrow(pPoseStack, menu.getScaledProgress(), x, y);
         }
     }
 
@@ -36,5 +37,23 @@ public class SynthesisStationScreen extends AbstractContainerScreen<SynthesisSta
         renderBackground(pPoseStack);
         super.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
         renderTooltip(pPoseStack, pMouseX, pMouseY);
+    }
+
+    private void renderArrow(PoseStack poseStack, int progress, int x ,int y) {
+        this.blit(poseStack, x + 42, y + 26, 176, 0, clamp(progress, 0, 16), 4);
+        progress -= 16;
+        this.blit(poseStack, x + 54, y + 30, 188, 4, 4, clamp(progress, 0, 9));
+        progress -= 13;
+        this.blit(poseStack, x + 54, y + 43, 188, 17, 4, clamp(progress, 0, 9));
+        progress -= 9;
+        this.blit(poseStack, x + 54 - clamp(progress, 0, 9), y + 48, 188 - clamp(progress, 0, 9), 22, clamp(progress, 0, 9), 4);
+        progress -= 9;
+        this.blit(poseStack, x + 45, y + 48 - clamp(progress, 0, 9), 179, 22 - clamp(progress, 0, 9), 4, clamp(progress, 0, 9));
+        progress -= 9;
+        this.blit(poseStack, x + 49, y + 26, 183, 0, clamp(progress, 0, 46), 29);
+    }
+
+    private int clamp(int value, int min, int max) {
+        return Math.max(min, Math.min(max, value));
     }
 }

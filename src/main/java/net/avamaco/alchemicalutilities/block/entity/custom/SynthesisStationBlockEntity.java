@@ -46,7 +46,10 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 12;
+    private int maxProgress = 60;
+    private int fuel = 0;
+    private int maxFuel = 20;
+
     public SynthesisStationBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.SYNTHESIS_STATION_BLOCK_ENTITY.get(), pPos, pBlockState);
         this.data = new ContainerData() {
@@ -55,6 +58,8 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
                 switch (pIndex) {
                     case 0: return SynthesisStationBlockEntity.this.progress;
                     case 1: return SynthesisStationBlockEntity.this.maxProgress;
+                    case 2: return SynthesisStationBlockEntity.this.fuel;
+                    case 3: return SynthesisStationBlockEntity.this.maxFuel;
                     default: return 0;
                 }
             }
@@ -64,12 +69,14 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
                 switch (pIndex) {
                     case 0: SynthesisStationBlockEntity.this.progress = pValue; break;
                     case 1: SynthesisStationBlockEntity.this.maxProgress = pValue; break;
+                    case 2: SynthesisStationBlockEntity.this.fuel = pValue; break;
+                    case 3: SynthesisStationBlockEntity.this.maxFuel = pValue; break;
                 }
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 4;
             }
         };
     }
@@ -110,6 +117,7 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("synthesis_station_progress", progress);
+        pTag.putInt("synthesis_station_fuel", fuel);
         super.saveAdditional(pTag);
     }
 
@@ -118,6 +126,7 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
         progress = pTag.getInt("synthesis_station_progress");
+        fuel = pTag.getInt("synthesis_station_fuel");
     }
 
     public void drops() {
@@ -130,11 +139,18 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, SynthesisStationBlockEntity pBlockEntity) {
-        if(hasRecipe(pBlockEntity)) {
+        ItemStack fuelStack = pBlockEntity.itemHandler.getStackInSlot(0);
+        if (pBlockEntity.fuel <= 0 && fuelStack.is(Items.BLAZE_POWDER)) {
+            pBlockEntity.fuel = pBlockEntity.maxFuel;
+            fuelStack.shrink(1);
+            setChanged(pLevel, pPos, pState);
+        }
+        if(hasRecipe(pBlockEntity) && pBlockEntity.fuel > 0) {
             pBlockEntity.progress++;
             setChanged(pLevel, pPos, pState);
             if (pBlockEntity.progress > pBlockEntity.maxProgress) {
                 craftItem(pBlockEntity);
+                pBlockEntity.fuel--;
             }
         }
         else {

@@ -22,7 +22,7 @@ public class SynthesisStationMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public SynthesisStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
     }
 
     public SynthesisStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -54,9 +54,17 @@ public class SynthesisStationMenu extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = data.get(0);
         int maxProgress = data.get(1);
-        int progressArrowSize = 54;
+        int progressArrowSize = 104;
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+
+    public int getScaledFuel() {
+        int fuel = data.get(2);
+        int maxFuel = data.get(3);
+        int fuelBarSize = 18;
+
+        return maxFuel != 0 && fuel != 0 ? fuel * fuelBarSize / maxFuel : 0;
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
