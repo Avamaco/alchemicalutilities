@@ -2,6 +2,7 @@ package net.avamaco.alchemicalutilities.screen;
 
 import net.avamaco.alchemicalutilities.block.ModBlocks;
 import net.avamaco.alchemicalutilities.block.entity.custom.SynthesisStationBlockEntity;
+import net.avamaco.alchemicalutilities.screen.slot.ModFuelSlot;
 import net.avamaco.alchemicalutilities.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -35,12 +36,12 @@ public class SynthesisStationMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 17, 27));
-            this.addSlot(new SlotItemHandler(handler, 1, 61, 16));
-            this.addSlot(new SlotItemHandler(handler, 2, 61, 34));
-            this.addSlot(new SlotItemHandler(handler, 3, 61, 52));
-            this.addSlot(new SlotItemHandler(handler, 4, 98, 34));
-            this.addSlot(new ModResultSlot(handler, 5, 134, 34));
+            this.addSlot(new ModFuelSlot(handler, 0, 26, 46));
+            this.addSlot(new SlotItemHandler(handler, 1, 26, 20));
+            this.addSlot(new SlotItemHandler(handler, 2, 62, 20));
+            this.addSlot(new SlotItemHandler(handler, 3, 62, 46));
+            this.addSlot(new SlotItemHandler(handler, 4, 98, 33));
+            this.addSlot(new ModResultSlot(handler, 5, 134, 33));
         });
 
         addDataSlots(data);
@@ -50,6 +51,13 @@ public class SynthesisStationMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
+    public int getScaledProgress() {
+        int progress = data.get(0);
+        int maxProgress = data.get(1);
+        int progressArrowSize = 54;
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.

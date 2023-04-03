@@ -25,6 +25,10 @@ public class SynthesisStationScreen extends AbstractContainerScreen<SynthesisSta
         int y = (height - imageHeight) / 2;
 
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
+
+        if (menu.isCrafting()) {
+            blit(pPoseStack, x + 42, y + 26, 176, 0, menu.getScaledProgress(), 29);
+        }
     }
 
     @Override
