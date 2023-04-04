@@ -71,6 +71,14 @@ public class AlchemicalUtilities
                                 return PhialsUtil.isCharged(stack) ? 1.0F : 0.0F;
                             });
 
+                    ItemProperties.register(ModItems.COPPER_SYRINGE.get(),
+                            new ResourceLocation(AlchemicalUtilities.MOD_ID, "charging"),
+                            (stack, level, living, id) -> {
+                                if (living == null || !CopperSyringeItem.isCharging(stack))
+                                    return 0.0F;
+                                return PhialsUtil.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - living.getUseItemRemainingTicks()) / (float)CopperSyringeItem.getChargeDuration();
+                            });
+
                     ItemProperties.register(ModItems.ALCHEMICAL_CROSSBOW.get(),
                             new ResourceLocation(AlchemicalUtilities.MOD_ID, "charged"),
                             (stack, level, living, id) -> {

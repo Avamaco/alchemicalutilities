@@ -1,0 +1,6 @@
+{
+  "parent": "alchemicalutilities:item/copper_syringe",
+  "textures": {
+    "layer0": "alchemicalutilities:item/syringe_loading_2"
+  }
+}

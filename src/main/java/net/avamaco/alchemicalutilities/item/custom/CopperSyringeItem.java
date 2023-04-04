@@ -2,6 +2,7 @@ package net.avamaco.alchemicalutilities.item.custom;
 
 import net.avamaco.alchemicalutilities.util.InventoryUtil;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -16,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CopperSyringeItem extends Item {
-    final private int minimumChargeTime = 40;
+    final private static int minimumChargeTime = 40;
 
     public CopperSyringeItem(Item.Properties pProperties) {
         super(pProperties);
@@ -32,6 +33,8 @@ public class CopperSyringeItem extends Item {
         }
         else if (InventoryUtil.checkForPhial(pPlayer)) {
             pPlayer.startUsingItem(pHand);
+            CompoundTag compoundtag = itemstack.getOrCreateTag();
+            compoundtag.putBoolean("Charging", true);
             return InteractionResultHolder.consume(itemstack);
         }
         else {
@@ -57,6 +60,8 @@ public class CopperSyringeItem extends Item {
         return 120;
     }
 
+    public static int getChargeDuration() { return minimumChargeTime; }
+
     @Override
     public UseAnim getUseAnimation(ItemStack pStack) {
         return UseAnim.BOW;
@@ -72,6 +77,9 @@ public class CopperSyringeItem extends Item {
         if (i >= minimumChargeTime) {
             loadPhial(pPlayer, pStack);
         }
+
+        CompoundTag compoundtag = pStack.getOrCreateTag();
+        compoundtag.putBoolean("Charging", false);
     }
 
     private static boolean loadPhial(Player pShooter, ItemStack pStack) {
@@ -94,14 +102,18 @@ public class CopperSyringeItem extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 
         if (PhialsUtil.getChargedPhial(pStack) == null) {
-            pTooltipComponents.add(new TextComponent("Empty"));
+            pTooltipComponents.add(new TextComponent("Empty").withStyle(ChatFormatting.GRAY));
         }
         else {
-            String currentPhial = PhialsUtil.getChargedPhial(pStack).getItem().toString();
-            pTooltipComponents.add(new TextComponent(currentPhial));
+            pTooltipComponents.add(PhialsUtil.getChargedPhial(pStack).getDisplayName());
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
+    public static boolean isCharging(ItemStack itemStack) {
+        CompoundTag compoundtag = itemStack.getTag();
+        return compoundtag != null && compoundtag.contains("Charging") && compoundtag.getBoolean("Charging");
     }
 
     public int getColor(ItemStack stack, int layer) {

@@ -3,6 +3,7 @@ package net.avamaco.alchemicalutilities.item.custom;
 import net.avamaco.alchemicalutilities.entity.ModEntityTypes;
 import net.avamaco.alchemicalutilities.entity.custom.PhialGrenadeProjectile;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.sounds.SoundEvents;
@@ -39,6 +40,7 @@ public class PhialGrenadeItem extends Item {
         if (!pPlayer.getAbilities().instabuild) {
             itemstack.shrink(1);
         }
+        pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, 0.5F, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
 
         return InteractionResultHolder.sidedSuccess(itemstack, pLevel.isClientSide());
     }
@@ -47,11 +49,12 @@ public class PhialGrenadeItem extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 
         if (PhialsUtil.getChargedPhial(pStack) == null) {
-            pTooltipComponents.add(new TextComponent("Empty"));
+            pTooltipComponents.add(new TextComponent("Empty").withStyle(ChatFormatting.GRAY));
         }
         else {
-            String currentPhial = PhialsUtil.getChargedPhial(pStack).getItem().toString();
-            pTooltipComponents.add(new TextComponent(currentPhial));
+            //String currentPhial = PhialsUtil.getChargedPhial(pStack).getItem().toString();
+            //pTooltipComponents.add(new TextComponent(currentPhial));
+            pTooltipComponents.add(PhialsUtil.getChargedPhial(pStack).getDisplayName());
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

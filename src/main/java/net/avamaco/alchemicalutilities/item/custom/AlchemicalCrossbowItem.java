@@ -5,9 +5,12 @@ import net.avamaco.alchemicalutilities.entity.custom.PhialGrenadeProjectile;
 import net.avamaco.alchemicalutilities.entity.custom.PhialShotProjectile;
 import net.avamaco.alchemicalutilities.util.InventoryUtil;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -33,11 +36,13 @@ public class AlchemicalCrossbowItem extends Item {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (PhialsUtil.isCharged(itemstack)) {
             shootPhial(pPlayer, pLevel, itemstack);
+            pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 0.5F, 1.0F);
             pPlayer.getCooldowns().addCooldown(this, 10);
             return InteractionResultHolder.consume(itemstack);
         }
         else if (InventoryUtil.checkForPhial(pPlayer)) {
             pPlayer.startUsingItem(pHand);
+            pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.CROSSBOW_LOADING_START, SoundSource.PLAYERS, 0.5F, 1.0F);
             CompoundTag compoundtag = itemstack.getOrCreateTag();
             compoundtag.putBoolean("Charging", true);
             return InteractionResultHolder.consume(itemstack);
@@ -79,6 +84,7 @@ public class AlchemicalCrossbowItem extends Item {
         int i = this.getUseDuration(pStack) - pTimeCharged;
         if (i >= minimumChargeTime) {
             loadPhial(pPlayer, pStack);
+            pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), SoundEvents.CROSSBOW_LOADING_END, SoundSource.PLAYERS, 0.5F, 1.0F);
         }
         CompoundTag compoundtag = pStack.getOrCreateTag();
         compoundtag.putBoolean("Charging", false);
@@ -104,11 +110,10 @@ public class AlchemicalCrossbowItem extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
 
         if (PhialsUtil.getChargedPhial(pStack) == null) {
-            pTooltipComponents.add(new TextComponent("Empty"));
+            pTooltipComponents.add(new TextComponent("Empty").withStyle(ChatFormatting.GRAY));
         }
         else {
-            String currentPhial = PhialsUtil.getChargedPhial(pStack).getItem().toString();
-            pTooltipComponents.add(new TextComponent(currentPhial));
+            pTooltipComponents.add(PhialsUtil.getChargedPhial(pStack).getDisplayName());
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

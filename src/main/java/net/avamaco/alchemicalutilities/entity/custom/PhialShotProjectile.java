@@ -3,6 +3,7 @@ package net.avamaco.alchemicalutilities.entity.custom;
 import net.avamaco.alchemicalutilities.item.ModItems;
 import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
@@ -63,5 +64,11 @@ public class PhialShotProjectile extends ThrowableItemProjectile {
             this.level.broadcastEntityEvent(this, (byte)3);
             this.discard();
         }
+    }
+
+    @Override
+    protected void onHit(HitResult pResult) {
+        this.playSound(SoundEvents.GLASS_BREAK, 0.5F, 1.0F);
+        super.onHit(pResult);
     }
 }
