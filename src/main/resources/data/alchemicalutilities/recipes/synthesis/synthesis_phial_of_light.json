@@ -1,0 +1,20 @@
+{
+  "type": "alchemicalutilities:alchemical_synthesis",
+  "ingredients": [
+    {
+      "item": "minecraft:torch"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    },
+    {
+      "item": "alchemicalutilities:glass_phial"
+    }
+  ],
+  "output": {
+    "item": "alchemicalutilities:phial_of_light"
+  }
+}
