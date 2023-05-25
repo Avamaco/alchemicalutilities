@@ -33,6 +33,7 @@
   "block.alchemicalutilities.alchemical_glass": "Alchemical Glass",
   "block.alchemicalutilities.alchemical_station": "Alchemical Station",
   "block.alchemicalutilities.synthesis_station": "Synthesis Station",
+  "block.alchemicalutilities.potion_injector": "Potion Injector",
 
   "itemGroup.alchemical_tab": "Alchemical Utilities"
 }

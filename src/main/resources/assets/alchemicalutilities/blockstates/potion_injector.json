@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "alchemicalutilities:block/potion_injector_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "alchemicalutilities:block/potion_injector",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "alchemicalutilities:block/potion_injector"
+    },
+    "facing=south": {
+      "model": "alchemicalutilities:block/potion_injector",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "alchemicalutilities:block/potion_injector_vertical"
+    },
+    "facing=west": {
+      "model": "alchemicalutilities:block/potion_injector",
+      "y": 270
+    }
+  }
+}
