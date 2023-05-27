@@ -90,7 +90,8 @@ public class PotionInjectorBlock extends BaseEntityBlock {
         boolean flag = pLevel.hasNeighborSignal(pPos) || pLevel.hasNeighborSignal(pPos.above());
         boolean flag1 = pState.getValue(TRIGGERED);
         if (flag && !flag1) {
-            pLevel.scheduleTick(pPos, this, 4);
+            //pLevel.scheduleTick(pPos, this, 4);
+            this.injectPotion(pLevel, pPos);
             pLevel.setBlock(pPos, pState.setValue(TRIGGERED, Boolean.valueOf(true)), 4);
         } else if (!flag && flag1) {
             pLevel.setBlock(pPos, pState.setValue(TRIGGERED, Boolean.valueOf(false)), 4);
@@ -102,7 +103,7 @@ public class PotionInjectorBlock extends BaseEntityBlock {
         this.injectPotion(pLevel, pPos);
     }
 
-    private void injectPotion(ServerLevel pLevel, BlockPos pPos) {
+    private void injectPotion(Level pLevel, BlockPos pPos) {
         AABB range = getAABB(pLevel, pPos);
         List<? extends LivingEntity> list = pLevel.getEntitiesOfClass(LivingEntity.class, range);
         if (!list.isEmpty()) {
@@ -122,7 +123,7 @@ public class PotionInjectorBlock extends BaseEntityBlock {
         }
     }
 
-    private AABB getAABB(ServerLevel level, BlockPos pos) {
+    private AABB getAABB(Level level, BlockPos pos) {
         BlockState blockState = level.getBlockState(pos);
         Direction facing = Direction.UP;
         if (blockState.getOptionalValue(BlockStateProperties.FACING).isPresent())
