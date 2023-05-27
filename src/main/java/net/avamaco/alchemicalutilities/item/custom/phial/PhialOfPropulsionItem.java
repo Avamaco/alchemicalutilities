@@ -4,6 +4,7 @@ import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -26,9 +27,7 @@ public class PhialOfPropulsionItem extends PotionPhialItem {
 
     @Override
     public void UseOnEntity(LivingEntity entity, Entity user) {
-        //entity.push(0.0D, 1.5D, 0.0D);
-        //user.sendMessage(new TextComponent(entity.toString()), user.getUUID());
-        entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 5, 50, false, false), user);
+        entity.push(0.0D, 1.5D, 0.0D);
     }
 
     @Override

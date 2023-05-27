@@ -10,6 +10,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -113,6 +116,7 @@ public class PotionInjectorBlock extends BaseEntityBlock {
                 PotionInjectorBlockEntity injectorBlock = (PotionInjectorBlockEntity) blockEntity;
                 if (injectorBlock.isCharged() && injectorBlock.getHeldPhial() instanceof PotionPhialItem) {
                     PotionPhialItem phial = (PotionPhialItem) injectorBlock.getHeldPhial();
+                    entity.hurt(DamageSource.OUT_OF_WORLD, 0.01F);
                     phial.UseOnEntity(entity, entity);
                     injectorBlock.reduceCharge(1);
                 }
