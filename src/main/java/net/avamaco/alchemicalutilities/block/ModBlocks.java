@@ -2,6 +2,7 @@ package net.avamaco.alchemicalutilities.block;
 
 import net.avamaco.alchemicalutilities.AlchemicalUtilities;
 import net.avamaco.alchemicalutilities.block.custom.AlchemicalStationBlock;
+import net.avamaco.alchemicalutilities.block.custom.LightWispBlock;
 import net.avamaco.alchemicalutilities.block.custom.PotionInjectorBlock;
 import net.avamaco.alchemicalutilities.block.custom.SynthesisStationBlock;
 import net.avamaco.alchemicalutilities.block.dispenser.BehaviourGrenade;
@@ -38,6 +39,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> POTION_INJECTOR = registerBlock("potion_injector",
             () -> new PotionInjectorBlock(BlockBehaviour.Properties.copy(Blocks.STONE)), ModCreativeModeTab.ALCHEMICAL_TAB);
+
+    public static final RegistryObject<Block> LIGHT_WISP = registerBlock("light_wisp",
+            () -> new LightWispBlock(BlockBehaviour.Properties.copy(Blocks.YELLOW_WOOL).lightLevel((state) -> 15).noCollission().noOcclusion().instabreak()), ModCreativeModeTab.ALCHEMICAL_TAB);
 
 
     private static <T extends  Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

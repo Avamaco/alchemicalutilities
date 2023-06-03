@@ -34,6 +34,7 @@
   "block.alchemicalutilities.alchemical_station": "Alchemical Station",
   "block.alchemicalutilities.synthesis_station": "Synthesis Station",
   "block.alchemicalutilities.potion_injector": "Potion Injector",
+  "block.alchemicalutilities.light_wisp": "Light Wisp",
 
   "itemGroup.alchemical_tab": "Alchemical Utilities"
 }
