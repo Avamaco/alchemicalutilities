@@ -73,9 +73,9 @@ public class PotionInjectorBlock extends BaseEntityBlock {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if (entity instanceof PotionInjectorBlockEntity) {
                 ItemStack usedItem = pPlayer.getItemInHand(pHand);
-                if (usedItem.getItem() instanceof PotionPhialItem && ((PotionInjectorBlockEntity) entity).canAdd(usedItem.getItem())) {
-                    ((PotionInjectorBlockEntity) entity).addPhial(usedItem.getItem());
-                    usedItem.shrink(1);
+                if (usedItem.getItem() instanceof PotionPhialItem && ((PotionInjectorBlockEntity) entity).canAdd(usedItem)) {
+                    ((PotionInjectorBlockEntity) entity).addPhial(usedItem);
+                    //usedItem.shrink(1);
                     return InteractionResult.sidedSuccess(pLevel.isClientSide());
                 }
                 else {
@@ -118,7 +118,7 @@ public class PotionInjectorBlock extends BaseEntityBlock {
                     PotionPhialItem phial = (PotionPhialItem) injectorBlock.getHeldPhial();
                     entity.hurt(DamageSource.OUT_OF_WORLD, 0.01F);
                     phial.UseOnEntity(entity, entity);
-                    injectorBlock.reduceCharge(1);
+                    injectorBlock.reduceCharge();
                 }
             }
             else {
