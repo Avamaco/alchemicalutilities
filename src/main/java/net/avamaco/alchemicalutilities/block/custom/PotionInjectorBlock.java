@@ -5,6 +5,7 @@ import net.avamaco.alchemicalutilities.block.entity.custom.PotionInjectorBlockEn
 import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -75,11 +76,12 @@ public class PotionInjectorBlock extends BaseEntityBlock {
                 ItemStack usedItem = pPlayer.getItemInHand(pHand);
                 if (usedItem.getItem() instanceof PotionPhialItem && ((PotionInjectorBlockEntity) entity).canAdd(usedItem)) {
                     ((PotionInjectorBlockEntity) entity).addPhial(usedItem);
-                    //usedItem.shrink(1);
                     return InteractionResult.sidedSuccess(pLevel.isClientSide());
                 }
                 else {
-                    pPlayer.sendMessage(new TextComponent(((PotionInjectorBlockEntity) entity).getMessage()), pPlayer.getUUID());
+                    //pPlayer.sendMessage(new TextComponent(((PotionInjectorBlockEntity) entity).getMessage()), pPlayer.getUUID());
+                    if (pPlayer.getItemInHand(pHand).isEmpty())
+                        spawnParticles(pState, pLevel, pPos, pPlayer, (PotionInjectorBlockEntity) entity);
                 }
             }
             else {
@@ -134,5 +136,12 @@ public class PotionInjectorBlock extends BaseEntityBlock {
             facing = blockState.getOptionalValue(BlockStateProperties.FACING).get();
         AABB box = new AABB(BlockPos.of(BlockPos.offset(pos.asLong(), facing)));
         return box;
+    }
+
+    private void spawnParticles(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, PotionInjectorBlockEntity entity) {
+        int howMany = entity.getCharge();
+        if (!pLevel.isClientSide()) {
+            ((ServerLevel)pLevel).sendParticles(ParticleTypes.EFFECT, pPos.getX() + 0.5D, pPos.getY() + 0.5D, pPos.getZ() + 0.5D,  howMany, 0, 0, 0, 0.15D);
+        }
     }
 }

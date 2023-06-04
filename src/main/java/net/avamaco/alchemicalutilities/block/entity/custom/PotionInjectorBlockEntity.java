@@ -74,6 +74,10 @@ public class PotionInjectorBlockEntity extends BlockEntity {
         return itemHandler.getStackInSlot(0).getItem();
     }
 
+    public int getCharge() {
+        return itemHandler.getStackInSlot(0).getCount();
+    }
+
     public boolean isCharged() {
         return !itemHandler.getStackInSlot(0).isEmpty();
     }
