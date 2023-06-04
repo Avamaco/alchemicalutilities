@@ -65,6 +65,9 @@ minecraft {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', 'alchemicalutilities'
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
             mods {
                 alchemicalutilities {
                     source sourceSets.main
@@ -158,6 +161,7 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven { url = 'https://maven.blamejared.com' }
 }
 
 dependencies {
@@ -182,6 +186,9 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:[1.18.2-71.1]:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:[1.18.2-71.1]")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
