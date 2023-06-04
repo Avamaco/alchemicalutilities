@@ -1,0 +1,15 @@
+{
+  "name": "Alchemist's Sword",
+  "icon": "alchemicalutilities:alchemist_sword",
+  "category": "alchemicalutilities:alchemical_contraptions",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This sword is about as good as a normal iron sword, but thanks to a system of channels I can imbue it with any potion I want. This lets me directly affect other living beings with my potions."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/alchemist_sword"
+    }
+  ]
+}

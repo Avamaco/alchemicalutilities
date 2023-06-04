@@ -1,0 +1,15 @@
+{
+  "name": "Synthesis Station",
+  "icon": "alchemicalutilities:synthesis_station",
+  "category": "alchemicalutilities:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "While the Alchemical Station is a very handy machine, it can't brew anything on its own. Because of that, I had to design a new machine, able to combine ingredients into a small phial. This is exactly what the Synthesis Station is.To use it, I have to add fuel, Blaze Powder, in the heater. Then add the ingredients and an empty phial in the right slots. After a while, a freshly-brewed potion comes out."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/synthesis_station"
+    }
+  ]
+}

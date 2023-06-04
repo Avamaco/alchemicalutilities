@@ -1,0 +1,11 @@
+{
+  "name": "Mundane Potions",
+  "icon": "alchemicalutilities:phial_of_healing",
+  "category": "alchemicalutilities:potions",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Potions brewed by a brewing stand have very simple effects: when applied to a living being, the target experiences the same effects as if it drank them. And when they are splashed in an area, they create a small cloud of gas that inflicts the same effect for a short duration."
+    }
+  ]
+}

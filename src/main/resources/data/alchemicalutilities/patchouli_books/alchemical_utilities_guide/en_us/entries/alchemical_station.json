@@ -1,0 +1,15 @@
+{
+  "name": "Alchemical Station",
+  "icon": "alchemicalutilities:alchemical_station",
+  "category": "alchemicalutilities:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This simple device allows transporting liquids between vessels without risking any chemical burns or unwanted spills. Perfect for transferring simple potions from mundane glass bottles to my phials."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/alchemical_station"
+    }
+  ]
+}

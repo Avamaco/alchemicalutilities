@@ -24,7 +24,7 @@ public class ModItems {
             () -> new AlchemicalCrossbowItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
 
     public static final RegistryObject<Item> ALCHEMIST_SWORD = ITEMS.register("alchemist_sword",
-            () -> new AlchemistSwordItem(ModTiers.ALCHEMIST, 4, 1.6f,
+            () -> new AlchemistSwordItem(ModTiers.ALCHEMIST, 3, -2.4f,
                     new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
     public static final RegistryObject<Item> PHIAL_GRENADE = ITEMS.register("phial_grenade",

@@ -1,0 +1,15 @@
+{
+  "name": "Alchemical Glass",
+  "icon": "alchemicalutilities:alchemical_glass",
+  "category": "alchemicalutilities:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Normal glass is far too fragile and reactive for my creations. Luckily, I can create much more versatile Alchemical Glass, which later can be used to craft containers for my potions."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/alchemical_glass"
+    }
+  ]
+}

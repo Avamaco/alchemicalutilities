@@ -1,0 +1,15 @@
+{
+  "name": "Glass Phial",
+  "icon": "alchemicalutilities:glass_phial",
+  "category": "alchemicalutilities:getting_started",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "These phials are great for storing a single dose of any potion I make."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/glass_phial"
+    }
+  ]
+}

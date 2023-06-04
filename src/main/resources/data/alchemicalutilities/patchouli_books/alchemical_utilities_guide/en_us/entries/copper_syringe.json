@@ -1,0 +1,15 @@
+{
+  "name": "Copper Syringe",
+  "icon": "alchemicalutilities:copper_syringe",
+  "category": "alchemicalutilities:alchemical_contraptions",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The syringe lets me quickly and painlessly inject contents of a phial into my veins. Loading them takes a bit of time, but I can just do it beforehand."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/copper_syringe"
+    }
+  ]
+}

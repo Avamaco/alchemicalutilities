@@ -1,0 +1,15 @@
+{
+  "name": "Phial Grenade",
+  "icon": "alchemicalutilities:phial_grenade",
+  "category": "alchemicalutilities:alchemical_contraptions",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This reinforced phial is imbued with power of ghasts' fireballs, which causes it to violently explode when thrown, spreading its effect on everything nearby. To fill it up, I have to put it in an Alchemical Staton."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/phial_grenade"
+    }
+  ]
+}

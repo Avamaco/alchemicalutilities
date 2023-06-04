@@ -1,0 +1,15 @@
+{
+  "name": "Alchemical Crossbow",
+  "icon": "alchemicalutilities:alchemical_crossbow",
+  "category": "alchemicalutilities:alchemical_contraptions",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "After making some changes to a crossbow, I managed to craft one that can launch phials at high speed. This way, I can use their powerful effects even at long range."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/alchemical_crossbow"
+    }
+  ]
+}

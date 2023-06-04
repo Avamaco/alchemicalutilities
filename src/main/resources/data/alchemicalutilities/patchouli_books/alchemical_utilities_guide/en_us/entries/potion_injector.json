@@ -1,0 +1,15 @@
+{
+  "name": "Potion Injector",
+  "icon": "alchemicalutilities:potion_injector",
+  "category": "alchemicalutilities:alchemical_contraptions",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This simple machine can inject potions into anything in front of it when powered with redstone. However, the crude design causes it to slightly harm anything affected. To fill it up, I have to interact with it while holding a phial or use a hopper. When poked with an empty hand, it will release some particles. The more particles, the more doses are left in it."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/potion_injector"
+    }
+  ]
+}

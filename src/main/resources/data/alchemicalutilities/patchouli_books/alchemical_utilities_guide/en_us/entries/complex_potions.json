@@ -1,0 +1,46 @@
+{
+  "name": "Complex Potions",
+  "icon": "alchemicalutilities:phial_of_warping",
+  "category": "alchemicalutilities:potions",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Complex potions require a Synthesis Station to brew but their effects are much more intriguing than mundane potions."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:phial_of_fire",
+      "text": "This potion will set on fire everything and everyone who has any contact with it. Be very cautious when handling it."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:phial_of_explosion",
+      "text": "Injecting this may sound like a terrible idea, but its magical properties make it harmless to the target. Just make sure not to break the phial - this can cause violent and dangerous explosions."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:phial_of_light",
+      "text": "Trapping light in a liquid form allows the crafty alchemist to quickly illuminate a large area when necessary. It can even make other living beings glow for a short time."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:phial_of_levitation",
+      "text": "This potion can make anyone feel so light that they start levitating for a short time."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:phial_of_propulsion",
+      "text": "The phial of levitation had an interesting effect, so I tried to strengthen it with glowstone. The result was disastrous. It can launch anything high into the air. Anything."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:phial_of_warping",
+      "text": "Thanks to magic of various creatures of The End, this potion can teleport the target a short distance. It also magically remembers its user and teleports them to it when spilled. Just be cautious: misuse can cause a clumsy alchemist to trap themselves in solid terrain."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:phial_of_smoke",
+      "text": "This potion emits large amounts of dark, thick smoke, temporarily blinding the target and obstructing the vision of anyone around. Great for confusing your enemies."
+    }
+  ]
+}
