@@ -3,6 +3,7 @@ package net.avamaco.alchemicalutilities.screen;
 import net.avamaco.alchemicalutilities.block.ModBlocks;
 import net.avamaco.alchemicalutilities.block.entity.custom.SynthesisStationBlockEntity;
 import net.avamaco.alchemicalutilities.screen.slot.ModFuelSlot;
+import net.avamaco.alchemicalutilities.screen.slot.ModPhialSlot;
 import net.avamaco.alchemicalutilities.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -40,7 +41,7 @@ public class SynthesisStationMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 1, 26, 20));
             this.addSlot(new SlotItemHandler(handler, 2, 62, 20));
             this.addSlot(new SlotItemHandler(handler, 3, 62, 46));
-            this.addSlot(new SlotItemHandler(handler, 4, 98, 33));
+            this.addSlot(new ModPhialSlot(handler, 4, 98, 33));
             this.addSlot(new ModResultSlot(handler, 5, 134, 33));
         });
 
