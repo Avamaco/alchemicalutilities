@@ -1,5 +1,7 @@
 {
   "name": "Alchemist's Notebook",
   "landing_text": "This book is my magnum opus. I've collected everything that every alchemist needs to know.",
-  "version": 1
+  "version": 2,
+  "model": "alchemicalutilities:guide_book",
+  "creative_tab": "alchemical_tab"
 }
