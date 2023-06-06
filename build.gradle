@@ -18,7 +18,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
-version = '0.1-1.18.2'
+version = "${mc_version}-${mod_version}"
 group = 'net.avamaco.alchemicalutilities' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'alchemicalutilities'
 
