@@ -36,10 +36,10 @@ public class AlchemicalStationMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 52, 25));
-            this.addSlot(new SlotItemHandler(handler, 1, 52, 45));
-            this.addSlot(new ModResultSlot(handler, 2, 108, 25));
-            this.addSlot(new ModResultSlot(handler, 3, 108, 45));
+            this.addSlot(new SlotItemHandler(handler, 0, 62, 56));
+            this.addSlot(new SlotItemHandler(handler, 1, 62, 20));
+            this.addSlot(new ModResultSlot(handler, 2, 98, 56));
+            this.addSlot(new ModResultSlot(handler, 3, 98, 20));
         });
 
         addDataSlots(data);
@@ -52,7 +52,7 @@ public class AlchemicalStationMenu extends AbstractContainerMenu {
     public int getScaledProgress() {
         int progress = data.get(0);
         int maxProgress = data.get(1);
-        int progressArrowSize = 29;
+        int progressArrowSize = 14;
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }

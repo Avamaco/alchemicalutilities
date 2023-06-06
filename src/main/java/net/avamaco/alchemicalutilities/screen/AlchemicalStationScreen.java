@@ -28,7 +28,7 @@ public class AlchemicalStationScreen extends AbstractContainerScreen<AlchemicalS
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         if (menu.isCrafting()) {
-            blit(pPoseStack, x + 74, y + 37, 176, 0, menu.getScaledProgress(), 11);
+            blit(pPoseStack, x + 62, y + 39, 176, 0, 17, menu.getScaledProgress());
         }
     }
 
