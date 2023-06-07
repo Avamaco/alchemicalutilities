@@ -57,10 +57,10 @@ public class AlchemicalStationRecipeCategory implements IRecipeCategory<Alchemic
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, AlchemicalStationRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 48, 21).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 48, 41).addIngredients(recipe.getIngredients().get(1));
+        builder.addSlot(RecipeIngredientRole.INPUT, 58, 52).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 58, 16).addIngredients(recipe.getIngredients().get(1));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 104, 21).addItemStack(recipe.getResultItem());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 104, 41).addItemStack(new ItemStack(Items.GLASS_BOTTLE));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 94, 52).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 94, 16).addItemStack(new ItemStack(Items.GLASS_BOTTLE));
     }
 }
