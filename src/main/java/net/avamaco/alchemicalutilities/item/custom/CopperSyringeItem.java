@@ -6,6 +6,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,6 +30,7 @@ public class CopperSyringeItem extends Item {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (PhialsUtil.isCharged(itemstack)) {
             inject(pPlayer, itemstack);
+            pLevel.playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.CROSSBOW_SHOOT, SoundSource.PLAYERS, 0.3F, 2.5F);
             pPlayer.getCooldowns().addCooldown(this, 10);
             return InteractionResultHolder.consume(itemstack);
         }
@@ -76,6 +79,7 @@ public class CopperSyringeItem extends Item {
         int i = this.getUseDuration(pStack) - pTimeCharged;
         if (i >= minimumChargeTime) {
             loadPhial(pPlayer, pStack);
+            pLevel.playSound(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), SoundEvents.CROSSBOW_LOADING_END, SoundSource.PLAYERS, 0.5F, 2.0F);
         }
 
         CompoundTag compoundtag = pStack.getOrCreateTag();

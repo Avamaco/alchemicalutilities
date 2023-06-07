@@ -3,7 +3,9 @@ package net.avamaco.alchemicalutilities.item.custom.phial;
 import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -27,6 +29,10 @@ public class PhialOfPropulsionItem extends PotionPhialItem {
 
     @Override
     public void UseOnEntity(LivingEntity entity, Entity user) {
+        Level level = entity.getLevel();
+        if (!level.isClientSide()) {
+            ((ServerLevel)level).sendParticles(ParticleTypes.FIREWORK, entity.getX(), entity.getY(0.1D), entity.getZ(),  20, 0, 0, 0, 0.15D);
+        }
         entity.push(0.0D, 1.5D, 0.0D);
     }
 
