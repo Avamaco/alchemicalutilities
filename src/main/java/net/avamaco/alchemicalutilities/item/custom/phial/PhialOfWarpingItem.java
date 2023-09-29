@@ -5,6 +5,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -22,6 +24,7 @@ public class PhialOfWarpingItem extends PotionPhialItem {
         entity.teleportTo(entity.getX() + direction.x, entity.getY() + direction.y, entity.getZ() + direction.z);
         if (!entity.level.isClientSide()) {
             ((ServerLevel)entity.level).sendParticles(ParticleTypes.PORTAL, entity.getX(), entity.getY() + entity.level.random.nextDouble() * 2.0D, entity.getZ(),  32, 0, 0, 0, entity.level.random.nextGaussian());
+            entity.getLevel().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 0.3F, 1.0F);
         }
     }
 
@@ -31,6 +34,7 @@ public class PhialOfWarpingItem extends PotionPhialItem {
             owner.teleportTo(position.x, position.y, position.z);
         if (!source.level.isClientSide()) {
             ((ServerLevel)source.level).sendParticles(ParticleTypes.PORTAL, source.getX(), source.getY() + source.level.random.nextDouble() * 2.0D, source.getZ(),  32, 0, 0, 0, source.level.random.nextGaussian());
+            source.getLevel().playSound(null, source.getX(), source.getY(), source.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 0.3F, 1.0F);
         }
     }
 
@@ -43,6 +47,7 @@ public class PhialOfWarpingItem extends PotionPhialItem {
             owner.teleportTo(position.x, position.y, position.z);
         if (!source.level.isClientSide()) {
             ((ServerLevel)source.level).sendParticles(ParticleTypes.PORTAL, source.getX(), source.getY() + source.level.random.nextDouble() * 2.0D, source.getZ(),  32, 0, 0, 0, source.level.random.nextGaussian());
+            source.getLevel().playSound(null, source.getX(), source.getY(), source.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 0.3F, 1.0F);
         }
     }
 }
