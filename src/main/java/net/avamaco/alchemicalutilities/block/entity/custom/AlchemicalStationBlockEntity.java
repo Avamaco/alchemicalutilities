@@ -42,7 +42,115 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
         }
     };
 
+    IItemHandler bottomItemHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return 2;
+        }
+
+        @NotNull
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return itemHandler.getStackInSlot(slot + 2);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return itemHandler.insertItem(slot + 2, stack, simulate);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return itemHandler.extractItem(slot + 2, amount, simulate);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemHandler.getSlotLimit(slot + 2);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return itemHandler.isItemValid(slot + 2, stack);
+        }
+    };
+
+    IItemHandler topItemHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return 1;
+        }
+
+        @NotNull
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return itemHandler.getStackInSlot(slot + 1);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return itemHandler.insertItem(slot + 1, stack, simulate);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return itemHandler.extractItem(slot + 1, amount, simulate);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemHandler.getSlotLimit(slot + 1);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return itemHandler.isItemValid(slot + 1, stack);
+        }
+    };
+
+    IItemHandler sideItemHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return 1;
+        }
+
+        @NotNull
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return itemHandler.getStackInSlot(slot);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            return itemHandler.insertItem(slot, stack, simulate);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return itemHandler.extractItem(slot, amount, simulate);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemHandler.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return itemHandler.isItemValid(slot, stack);
+        }
+    };
+
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> bottomLazyItemHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> topLazyItemHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> sideLazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
     private int progress = 0;
@@ -90,6 +198,13 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (side == Direction.DOWN)
+                return bottomLazyItemHandler.cast();
+            else if (side == Direction.UP)
+                return topLazyItemHandler.cast();
+            else if (side != null)
+                return sideLazyItemHandler.cast();
+
             return lazyItemHandler.cast();
         }
         return super.getCapability(cap, side);
@@ -99,12 +214,18 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        bottomLazyItemHandler = LazyOptional.of(() -> bottomItemHandler);
+        topLazyItemHandler = LazyOptional.of(() -> topItemHandler);
+        sideLazyItemHandler = LazyOptional.of(() -> sideItemHandler);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        bottomLazyItemHandler.invalidate();
+        topLazyItemHandler.invalidate();
+        sideLazyItemHandler.invalidate();
     }
 
     @Override
