@@ -114,10 +114,8 @@ public class PotionInjectorBlock extends BaseEntityBlock {
         if (!list.isEmpty()) {
             LivingEntity entity = list.get(pLevel.random.nextInt(list.size()));
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof PotionInjectorBlockEntity) {
-                PotionInjectorBlockEntity injectorBlock = (PotionInjectorBlockEntity) blockEntity;
-                if (injectorBlock.isCharged() && injectorBlock.getHeldPhial() instanceof PotionPhialItem) {
-                    PotionPhialItem phial = (PotionPhialItem) injectorBlock.getHeldPhial();
+            if (blockEntity instanceof PotionInjectorBlockEntity injectorBlock) {
+                if (injectorBlock.isCharged() && injectorBlock.getHeldPhial() instanceof PotionPhialItem phial) {
                     entity.hurt(DamageSource.OUT_OF_WORLD, 0.01F);
                     phial.UseOnEntity(entity, entity);
                     injectorBlock.reduceCharge();
