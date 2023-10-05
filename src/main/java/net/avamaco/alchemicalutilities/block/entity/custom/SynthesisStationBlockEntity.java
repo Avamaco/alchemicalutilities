@@ -1,10 +1,13 @@
 package net.avamaco.alchemicalutilities.block.entity.custom;
 
 import net.avamaco.alchemicalutilities.block.entity.ModBlockEntities;
+import net.avamaco.alchemicalutilities.item.ModItems;
 import net.avamaco.alchemicalutilities.recipe.AlchemicalStationRecipe;
 import net.avamaco.alchemicalutilities.recipe.SynthesisStationRecipe;
 import net.avamaco.alchemicalutilities.screen.AlchemicalStationMenu;
 import net.avamaco.alchemicalutilities.screen.SynthesisStationMenu;
+import net.avamaco.alchemicalutilities.util.InventoryUtil;
+import net.avamaco.alchemicalutilities.util.PhialsUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -42,7 +45,87 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
         }
     };
 
+    IItemHandler topBottomItemHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return 6;
+        }
+
+        @NotNull
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return itemHandler.getStackInSlot(slot);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (slot == 0 && stack.getItem() == Items.BLAZE_POWDER) return itemHandler.insertItem(slot, stack, simulate);
+            if (slot == 4 && (stack.getItem() == ModItems.GLASS_PHIAL.get() || InventoryUtil.isPhial(stack))) return itemHandler.insertItem(slot, stack, simulate);
+            return stack;
+        }
+
+        @NotNull
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot != 5) return ItemStack.EMPTY;
+            return itemHandler.extractItem(slot, amount, simulate);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemHandler.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            if (slot == 0 && stack.getItem() == Items.BLAZE_POWDER) return itemHandler.isItemValid(slot, stack);
+            if (slot == 4 && (stack.getItem() == ModItems.GLASS_PHIAL.get() || InventoryUtil.isPhial(stack))) return itemHandler.isItemValid(slot, stack);
+            return false;
+        }
+    };
+
+    IItemHandler sideItemHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return 6;
+        }
+
+        @NotNull
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return itemHandler.getStackInSlot(slot);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (slot != 1 && slot != 2 && slot != 3) return stack;
+            return itemHandler.insertItem(slot, stack, simulate);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            if (slot != 5) return ItemStack.EMPTY;
+            return itemHandler.extractItem(slot, amount, simulate);
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemHandler.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            if (slot != 1 && slot != 2 && slot != 3) return false;
+            return itemHandler.isItemValid(slot, stack);
+        }
+    };
+
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> topBottomLazyItemHandler = LazyOptional.empty();
+    private LazyOptional<IItemHandler> sideLazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
     private int progress = 0;
@@ -96,6 +179,11 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
     @Override
     public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (side == Direction.UP || side == Direction.DOWN)
+                return topBottomLazyItemHandler.cast();
+            else if (side != null)
+                return sideLazyItemHandler.cast();
+
             return lazyItemHandler.cast();
         }
         return super.getCapability(cap, side);
@@ -105,12 +193,16 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        topBottomLazyItemHandler = LazyOptional.of(() -> topBottomItemHandler);
+        sideLazyItemHandler = LazyOptional.of(() -> sideItemHandler);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        topBottomLazyItemHandler.invalidate();
+        sideLazyItemHandler.invalidate();
     }
 
     @Override

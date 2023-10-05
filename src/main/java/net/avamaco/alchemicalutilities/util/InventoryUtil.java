@@ -28,7 +28,7 @@ public class InventoryUtil {
     /*private static boolean isPhial(ItemStack itemStack) {
         return itemStack.is(ModTags.Items.POTION_PHIALS);
     }*/
-    private static boolean isPhial(ItemStack itemStack) {
+    public static boolean isPhial(ItemStack itemStack) {
         return itemStack.getItem() instanceof PotionPhialItem;
     }
 }
