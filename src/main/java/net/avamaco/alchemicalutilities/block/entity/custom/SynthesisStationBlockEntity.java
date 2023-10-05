@@ -163,6 +163,16 @@ public class SynthesisStationBlockEntity extends BlockEntity implements MenuProv
         this.progress = 0;
     }
 
+    // Comparator power is equal to the minimum of ingredient numbers. Doesn't include fuel and phials.
+    public int getComparatorPower() {
+        int result = itemHandler.getStackInSlot(1).getCount();
+        result = Math.min(result, itemHandler.getStackInSlot(2).getCount());
+        result = Math.min(result, itemHandler.getStackInSlot(3).getCount());
+        // clamp value between 0 and 15
+        result = Math.max(0, Math.min(result, 15));
+        return result;
+    }
+
     // item crafting from recipes
     private static void craftItem(SynthesisStationBlockEntity entity) {
         Level level = entity.level;
