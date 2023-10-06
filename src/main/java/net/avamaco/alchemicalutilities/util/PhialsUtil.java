@@ -14,7 +14,12 @@ public class PhialsUtil {
             ModItems.PHIAL_OF_SLOW_FALLING.get(), ModItems.PHIAL_OF_SLOWNESS.get(), ModItems.PHIAL_OF_STRENGTH.get(),
             ModItems.PHIAL_OF_WATER_BREATHING.get(), ModItems.PHIAL_OF_WEAKNESS.get(), ModItems.PHIAL_OF_FIRE.get(),
             ModItems.PHIAL_OF_WARPING.get(), ModItems.PHIAL_OF_EXPLOSION.get(), ModItems.PHIAL_OF_LEVITATION.get(),
-            ModItems.PHIAL_OF_PROPULSION.get(), ModItems.PHIAL_OF_SMOKE.get(), ModItems.PHIAL_OF_LIGHT.get()};
+            ModItems.PHIAL_OF_PROPULSION.get(), ModItems.PHIAL_OF_SMOKE.get(), ModItems.PHIAL_OF_LIGHT.get()
+    };
+
+    public static Item[] mutagens = {
+            ModItems.STABILITY_MUTAGEN.get(), ModItems.POTENCY_MUTAGEN.get(), ModItems.VOLATILITY_MUTAGEN.get()
+    };
 
     public static boolean isCharged(ItemStack itemStack) {
         CompoundTag compoundtag = itemStack.getTag();

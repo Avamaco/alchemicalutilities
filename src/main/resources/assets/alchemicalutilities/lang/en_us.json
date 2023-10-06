@@ -31,6 +31,9 @@
   "item.alchemicalutilities.phial_of_light": "Phial of Light",
 
   "item.alchemicalutilities.mutagen_capsule": "Mutagen Capsule",
+  "item.alchemicalutilities.stability_mutagen": "Stability Mutagen",
+  "item.alchemicalutilities.potency_mutagen": "Potency Mutagen",
+  "item.alchemicalutilities.volatility_mutagen": "Volatility Mutagen",
 
   "block.alchemicalutilities.alchemical_glass": "Alchemical Glass",
   "block.alchemicalutilities.alchemical_station": "Alchemical Station",
