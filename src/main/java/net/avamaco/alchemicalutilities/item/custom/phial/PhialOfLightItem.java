@@ -9,6 +9,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.BaseFireBlock;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 
 public class PhialOfLightItem extends PotionPhialItem {
@@ -43,9 +44,14 @@ public class PhialOfLightItem extends PotionPhialItem {
 
     @Override
     public void UseOnBlock(Vec3 position, BlockPos blockPos, Direction direction, Entity source) {
-        BlockPos target = blockPos.offset(direction.getStepX(), direction.getStepY(), direction.getStepZ());
-        if (source.level.isEmptyBlock(target)) {
-            source.level.setBlockAndUpdate(target, ModBlocks.LIGHT_WISP.get().defaultBlockState());
+        if (source.level.getBlockState(blockPos).getBlock() == Blocks.AMETHYST_BLOCK) {
+            source.level.setBlockAndUpdate(blockPos, ModBlocks.GLISTENING_AMETHYST.get().defaultBlockState());
+        }
+        else {
+            BlockPos target = blockPos.offset(direction.getStepX(), direction.getStepY(), direction.getStepZ());
+            if (source.level.isEmptyBlock(target)) {
+                source.level.setBlockAndUpdate(target, ModBlocks.LIGHT_WISP.get().defaultBlockState());
+        }
         }
     }
 }

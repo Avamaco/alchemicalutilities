@@ -43,6 +43,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> LIGHT_WISP = registerBlock("light_wisp",
             () -> new LightWispBlock(BlockBehaviour.Properties.copy(Blocks.YELLOW_WOOL).lightLevel((state) -> 15).noCollission().noOcclusion().instabreak()), ModCreativeModeTab.ALCHEMICAL_TAB);
 
+    public static final RegistryObject<Block> GLISTENING_AMETHYST = registerBlock("glistening_amethyst",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.AMETHYST_BLOCK).lightLevel((state) -> 15)), ModCreativeModeTab.ALCHEMICAL_TAB);
 
     private static <T extends  Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

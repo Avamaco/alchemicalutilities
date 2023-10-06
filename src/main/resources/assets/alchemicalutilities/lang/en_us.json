@@ -41,5 +41,7 @@
   "block.alchemicalutilities.potion_injector": "Potion Injector",
   "block.alchemicalutilities.light_wisp": "Light Wisp",
 
+  "block.alchemicalutilities.glistening_amethyst": "Glistening Amethyst",
+
   "itemGroup.alchemical_tab": "Alchemical Utilities"
 }
