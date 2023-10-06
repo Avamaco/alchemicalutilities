@@ -73,15 +73,6 @@ public class ModItems {
     public static final RegistryObject<Item> PHIAL_OF_LIGHT = ITEMS.register("phial_of_light",
             () -> new PhialOfLightItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
-    public static final RegistryObject<Item> MUTAGEN_CAPSULE = ITEMS.register("mutagen_capsule",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
-    public static final RegistryObject<Item> STABILITY_MUTAGEN = ITEMS.register("stability_mutagen",
-            () -> new MutagenItem(0xFFBB0000, new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
-    public static final RegistryObject<Item> POTENCY_MUTAGEN = ITEMS.register("potency_mutagen",
-            () -> new MutagenItem(0xFFDD8800, new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
-    public static final RegistryObject<Item> VOLATILITY_MUTAGEN = ITEMS.register("volatility_mutagen",
-            () -> new MutagenItem(0xFF005050, new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

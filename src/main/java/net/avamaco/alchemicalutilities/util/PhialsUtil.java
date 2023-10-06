@@ -17,10 +17,6 @@ public class PhialsUtil {
             ModItems.PHIAL_OF_PROPULSION.get(), ModItems.PHIAL_OF_SMOKE.get(), ModItems.PHIAL_OF_LIGHT.get()
     };
 
-    public static Item[] mutagens = {
-            ModItems.STABILITY_MUTAGEN.get(), ModItems.POTENCY_MUTAGEN.get(), ModItems.VOLATILITY_MUTAGEN.get()
-    };
-
     public static boolean isCharged(ItemStack itemStack) {
         CompoundTag compoundtag = itemStack.getTag();
         return compoundtag != null && compoundtag.contains("Charged") && compoundtag.getBoolean("Charged");

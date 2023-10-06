@@ -38,11 +38,6 @@ public class ModEventBusEvents {
             }, PhialsUtil.phials);
 
         event.getItemColors().register((stack, tint) -> {
-            if (stack.getItem() instanceof MutagenItem) return ((MutagenItem)stack.getItem()).getColor(tint);
-            else return -1;
-        }, PhialsUtil.mutagens);
-
-        event.getItemColors().register((stack, tint) -> {
             if (stack.getItem() instanceof PhialGrenadeItem) return ((PhialGrenadeItem)stack.getItem()).getColor(stack, tint);
             else return -1;
         }, ModItems.PHIAL_GRENADE.get());
