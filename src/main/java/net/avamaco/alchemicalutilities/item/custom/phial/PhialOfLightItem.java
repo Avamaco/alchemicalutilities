@@ -44,14 +44,15 @@ public class PhialOfLightItem extends PotionPhialItem {
 
     @Override
     public void UseOnBlock(Vec3 position, BlockPos blockPos, Direction direction, Entity source) {
-        if (source.level.getBlockState(blockPos).getBlock() == Blocks.AMETHYST_BLOCK) {
+        if (source.level.getBlockState(blockPos).getBlock() == Blocks.AMETHYST_BLOCK)
             source.level.setBlockAndUpdate(blockPos, ModBlocks.GLISTENING_AMETHYST.get().defaultBlockState());
-        }
+        else if (source.level.getBlockState(blockPos).getBlock() == Blocks.GOLD_BLOCK)
+            source.level.setBlockAndUpdate(blockPos, ModBlocks.IRIDESCENT_GOLD_BLOCK.get().defaultBlockState());
         else {
             BlockPos target = blockPos.offset(direction.getStepX(), direction.getStepY(), direction.getStepZ());
             if (source.level.isEmptyBlock(target)) {
                 source.level.setBlockAndUpdate(target, ModBlocks.LIGHT_WISP.get().defaultBlockState());
-        }
+            }
         }
     }
 }
