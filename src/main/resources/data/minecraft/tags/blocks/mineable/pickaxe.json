@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "alchemicalutilities:glistening_amethyst"
+    "alchemicalutilities:glistening_amethyst",
+    "alchemicalutilities:iridescent_gold_block"
   ]
 }
