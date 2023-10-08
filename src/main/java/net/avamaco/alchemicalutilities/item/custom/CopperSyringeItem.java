@@ -46,7 +46,7 @@ public class CopperSyringeItem extends Item {
     }
 
 
-    private void inject(Player pPlayer, ItemStack syringe) {
+    protected void inject(Player pPlayer, ItemStack syringe) {
         if (PhialsUtil.getChargedPhial(syringe) == null) {
             PhialsUtil.clearChargedPhial(syringe);
             return;
@@ -86,7 +86,7 @@ public class CopperSyringeItem extends Item {
         compoundtag.putBoolean("Charging", false);
     }
 
-    private static boolean loadPhial(Player pShooter, ItemStack pStack) {
+    protected boolean loadPhial(Player pShooter, ItemStack pStack) {
         if (!(InventoryUtil.checkForPhial(pShooter))) {
             return false;
         }

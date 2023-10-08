@@ -44,4 +44,11 @@ public class PhialOfSmokeItem extends PotionPhialItem {
             ((ServerLevel)level).sendParticles(ParticleTypes.FLASH, x, y, z,  1, 0, 0, 0, 0);
         }
     }
+
+    @Override
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) {
+        particleBurst(entity.level, entity.getX(), entity.getEyeY(), entity.getZ());
+        particleBurst(entity.level, entity.getX(), entity.getEyeY(), entity.getZ());
+        entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 160, 0), user);
+    }
 }

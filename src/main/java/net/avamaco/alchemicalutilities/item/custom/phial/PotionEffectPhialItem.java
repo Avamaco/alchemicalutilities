@@ -34,4 +34,9 @@ public class PotionEffectPhialItem extends PotionPhialItem {
     public void UseOnBlock(Vec3 position, BlockPos blockPos, Direction direction, Entity source) {
         makeTinyAOECloud(new MobEffectInstance(EFFECT, Math.min(DEFAULT_TIME, 100), 0), source, position);
     }
+
+    @Override
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) {
+        entity.addEffect(new MobEffectInstance(EFFECT, (int) (DEFAULT_TIME * 1.5), 1), user);
+    }
 }

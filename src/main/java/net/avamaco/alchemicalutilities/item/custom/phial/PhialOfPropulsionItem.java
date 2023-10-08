@@ -75,6 +75,15 @@ public class PhialOfPropulsionItem extends PotionPhialItem {
         }
     }
 
+    @Override
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) {
+        Level level = entity.getLevel();
+        if (!level.isClientSide()) {
+            ((ServerLevel)level).sendParticles(ParticleTypes.FIREWORK, entity.getX(), entity.getY(0.1D), entity.getZ(),  20, 0, 0, 0, 0.15D);
+        }
+        entity.push(0.0D, 2.5D, 0.0D);
+    }
+
     private void launchBlock(BlockPos blockPos, Level level, double velocityX, double velocityY, double velocityZ) {
         BlockState blockState = level.getBlockState(blockPos);
         FallingBlockEntity fallingBlockEntity = new FallingBlockEntity(EntityType.FALLING_BLOCK, level);

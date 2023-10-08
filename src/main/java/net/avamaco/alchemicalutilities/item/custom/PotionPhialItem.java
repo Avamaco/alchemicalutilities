@@ -27,6 +27,8 @@ public class PotionPhialItem extends Item {
 
     public void UseOnBlock(Vec3 position, BlockPos blockPos, Direction direction, Entity source) {}
 
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) { this.UseOnEntity(entity, user);}
+
     public int getColor(int layer) {
         return layer == 1 ? this.COLOR : -1;
     }

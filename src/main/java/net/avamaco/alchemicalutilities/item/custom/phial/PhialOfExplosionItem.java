@@ -28,4 +28,9 @@ public class PhialOfExplosionItem extends PotionPhialItem {
     public void UseOnBlock(Vec3 position, BlockPos blockPos, Direction direction, Entity source) {
         source.level.explode(source, source.getX(), source.getY(0.0625D), source.getZ(), 0.5F, Explosion.BlockInteraction.BREAK);
     }
+
+    @Override
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) {
+        entity.level.explode(entity, entity.getX(), entity.getY(0.2D), entity.getZ(), 3.0F, Explosion.BlockInteraction.NONE);
+    }
 }

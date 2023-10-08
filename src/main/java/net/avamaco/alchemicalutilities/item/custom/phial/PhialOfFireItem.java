@@ -44,4 +44,9 @@ public class PhialOfFireItem extends PotionPhialItem {
             source.level.setBlockAndUpdate(target, BaseFireBlock.getState(source.level, target));
         }
     }
+
+    @Override
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) {
+        entity.setSecondsOnFire(30);
+    }
 }

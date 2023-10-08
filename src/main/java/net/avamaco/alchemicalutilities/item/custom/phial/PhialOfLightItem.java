@@ -55,4 +55,10 @@ public class PhialOfLightItem extends PotionPhialItem {
             }
         }
     }
+
+    @Override
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) {
+        entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 360, 0), user);
+        entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 360, 0), user);
+    }
 }

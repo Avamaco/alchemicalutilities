@@ -50,4 +50,14 @@ public class PhialOfWarpingItem extends PotionPhialItem {
             source.getLevel().playSound(null, source.getX(), source.getY(), source.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 0.3F, 1.0F);
         }
     }
+
+    @Override
+    public void UseOnEntityEnhanced(LivingEntity entity, Entity user) {
+        Vec3 direction = user.getLookAngle().scale(15.0F);
+        entity.teleportTo(entity.getX() + direction.x, entity.getY() + direction.y, entity.getZ() + direction.z);
+        if (!entity.level.isClientSide()) {
+            ((ServerLevel)entity.level).sendParticles(ParticleTypes.PORTAL, entity.getX(), entity.getY() + entity.level.random.nextDouble() * 2.0D, entity.getZ(),  32, 0, 0, 0, entity.level.random.nextGaussian());
+            entity.getLevel().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 0.3F, 1.0F);
+        }
+    }
 }

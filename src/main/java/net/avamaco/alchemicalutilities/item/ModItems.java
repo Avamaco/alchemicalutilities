@@ -77,7 +77,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
     public static final RegistryObject<Item> GOLD_SYRINGE = ITEMS.register("gold_syringe",
-            () -> new CopperSyringeItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
+            () -> new GoldSyringeItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
