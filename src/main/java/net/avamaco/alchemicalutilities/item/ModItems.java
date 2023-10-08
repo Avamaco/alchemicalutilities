@@ -73,6 +73,9 @@ public class ModItems {
     public static final RegistryObject<Item> PHIAL_OF_LIGHT = ITEMS.register("phial_of_light",
             () -> new PhialOfLightItem(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
 
+    public static final RegistryObject<Item> IRIDESCENT_GOLD_INGOT = ITEMS.register("iridescent_gold_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB)));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

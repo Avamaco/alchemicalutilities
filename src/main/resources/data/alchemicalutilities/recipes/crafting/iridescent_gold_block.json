@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "alchemicalutilities:iridescent_gold_ingot"
+    }
+  },
+  "result": {
+    "item": "alchemicalutilities:iridescent_gold_block"
+  }
+}
