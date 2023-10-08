@@ -1,0 +1,6 @@
+{
+  "parent": "alchemicalutilities:item/gold_syringe",
+  "textures": {
+    "layer0": "alchemicalutilities:item/gold_syringe_loading_2"
+  }
+}

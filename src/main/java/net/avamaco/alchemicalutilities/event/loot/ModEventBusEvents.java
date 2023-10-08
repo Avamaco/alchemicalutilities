@@ -30,7 +30,7 @@ public class ModEventBusEvents {
         event.getItemColors().register((stack, tint) -> {
             if (stack.getItem() instanceof CopperSyringeItem) return ((CopperSyringeItem)stack.getItem()).getColor(stack, tint);
             else return -1;
-            }, ModItems.COPPER_SYRINGE.get());
+            }, ModItems.COPPER_SYRINGE.get(), ModItems.GOLD_SYRINGE.get());
 
         event.getItemColors().register((stack, tint) -> {
             if (stack.getItem() instanceof PotionPhialItem) return ((PotionPhialItem)stack.getItem()).getColor(tint);

@@ -1,0 +1,26 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "alchemicalutilities:item/gold_syringe_empty"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "alchemicalutilities:charged": 1.0
+      },
+      "model": "alchemicalutilities:item/gold_syringe_full"
+    },
+    {
+      "predicate": {
+        "alchemicalutilities:charging": 0.5
+      },
+      "model": "alchemicalutilities:item/gold_syringe_loading_1"
+    },
+    {
+      "predicate": {
+        "alchemicalutilities:charging": 1.0
+      },
+      "model": "alchemicalutilities:item/gold_syringe_loading_2"
+    }
+  ]
+}
