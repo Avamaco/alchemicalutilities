@@ -31,6 +31,10 @@
 
   "item.alchemicalutilities.iridescent_gold_ingot": "Iridescent Gold Ingot",
   "item.alchemicalutilities.gold_syringe": "Iridescent Syringe",
+  "item.alchemicalutilities.iridescent_helmet": "Iridescent Helmet",
+  "item.alchemicalutilities.iridescent_chestplate": "Iridescent Chestplate",
+  "item.alchemicalutilities.iridescent_leggings": "Iridescent Leggings",
+  "item.alchemicalutilities.iridescent_boots": "Iridescent Boots",
 
   "block.alchemicalutilities.alchemical_glass": "Alchemical Glass",
   "block.alchemicalutilities.alchemical_station": "Alchemical Station",
