@@ -82,7 +82,7 @@ public class ModItems {
     public static final RegistryObject<Item> IRIDESCENT_HELMET = ITEMS.register("iridescent_helmet",
             () -> new ArmorItem(ModArmorMaterials.IRIDESCENT, EquipmentSlot.HEAD, new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
     public static final RegistryObject<Item> IRIDESCENT_CHESTPLATE = ITEMS.register("iridescent_chestplate",
-            () -> new ArmorItem(ModArmorMaterials.IRIDESCENT, EquipmentSlot.CHEST, new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
+            () -> new IridescentChestplateItem(ModArmorMaterials.IRIDESCENT, EquipmentSlot.CHEST, new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
     public static final RegistryObject<Item> IRIDESCENT_LEGGINGS = ITEMS.register("iridescent_leggings",
             () -> new ArmorItem(ModArmorMaterials.IRIDESCENT, EquipmentSlot.LEGS, new Item.Properties().tab(ModCreativeModeTab.ALCHEMICAL_TAB).stacksTo(1)));
     public static final RegistryObject<Item> IRIDESCENT_BOOTS = ITEMS.register("iridescent_boots",

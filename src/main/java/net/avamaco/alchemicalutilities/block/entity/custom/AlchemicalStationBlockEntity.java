@@ -232,6 +232,13 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
                 craftGrenade(pBlockEntity);
             }
         }
+        else if (hasInfusionRecipe(pBlockEntity)) {
+            pBlockEntity.progress++;
+            setChanged(pLevel, pPos, pState);
+            if (pBlockEntity.progress > pBlockEntity.maxProgress) {
+                infuseArmor(pBlockEntity);
+            }
+        }
         else {
             pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
@@ -296,7 +303,6 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
     // grenade crafting (kinda hardcoded)
 
     private static void craftGrenade(AlchemicalStationBlockEntity entity) {
-        Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
             inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
@@ -337,5 +343,41 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
                     && PhialsUtil.getChargedPhial(inventory.getItem(2)).getItem() == inventory.getItem(1).getItem())
                     || inventory.getItem(2).isEmpty())
                 && (inventory.getItem(3).getItem() == ModItems.GLASS_PHIAL.get() || inventory.getItem(3).isEmpty());
+    }
+
+    // armor infusion (also hardcoded)
+
+    private static void infuseArmor(AlchemicalStationBlockEntity entity) {
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+
+        if (hasInfusionRecipe(entity)) {
+            ItemStack result = entity.itemHandler.getStackInSlot(0).copy();
+            ItemStack toCharge = inventory.getItem(1).copy();
+            toCharge.setCount(1);
+            PhialsUtil.addChargedPhial(result, toCharge);
+            entity.itemHandler.extractItem(0, 1, false);
+            entity.itemHandler.extractItem(1, 1, false);
+            entity.itemHandler.setStackInSlot(2, result);
+            entity.itemHandler.setStackInSlot(3, new ItemStack(ModItems.GLASS_PHIAL.get(),
+                    entity.itemHandler.getStackInSlot(3).getCount() + 1));
+        }
+
+        entity.resetProgress();
+    }
+
+    private static boolean hasInfusionRecipe(AlchemicalStationBlockEntity entity) {
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
+            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        }
+
+        return inventory.getItem(0).getItem() == ModItems.IRIDESCENT_CHESTPLATE.get()
+                && inventory.getItem(1).getItem() instanceof PotionPhialItem
+                && canInsertAmountIntoOutputSlot(inventory)
+                && inventory.getItem(2).isEmpty();
     }
 }
