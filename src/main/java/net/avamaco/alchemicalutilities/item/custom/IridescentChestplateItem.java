@@ -1,10 +1,12 @@
 package net.avamaco.alchemicalutilities.item.custom;
 
+import net.avamaco.alchemicalutilities.item.custom.phial.PhialOfPropulsionItem;
 import net.avamaco.alchemicalutilities.util.PhialsUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
@@ -55,6 +57,7 @@ public class IridescentChestplateItem extends ArmorItem {
         ItemStack phialStack = PhialsUtil.getChargedPhial(stack);
         if (phialStack.getItem() instanceof PotionPhialItem phial) {
             phial.UseOnEntity(player, player);
+            if (phial instanceof PhialOfPropulsionItem) player.hurt(DamageSource.OUT_OF_WORLD, 0.01F);
         }
         player.sendMessage(new TextComponent("dziala"), player.getUUID());
     }

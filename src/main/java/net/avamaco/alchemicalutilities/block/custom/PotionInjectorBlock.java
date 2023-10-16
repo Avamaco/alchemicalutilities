@@ -3,6 +3,7 @@ package net.avamaco.alchemicalutilities.block.custom;
 import net.avamaco.alchemicalutilities.block.entity.custom.AlchemicalStationBlockEntity;
 import net.avamaco.alchemicalutilities.block.entity.custom.PotionInjectorBlockEntity;
 import net.avamaco.alchemicalutilities.item.custom.PotionPhialItem;
+import net.avamaco.alchemicalutilities.item.custom.phial.PhialOfPropulsionItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -116,7 +117,7 @@ public class PotionInjectorBlock extends BaseEntityBlock {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if (blockEntity instanceof PotionInjectorBlockEntity injectorBlock) {
                 if (injectorBlock.isCharged() && injectorBlock.getHeldPhial() instanceof PotionPhialItem phial) {
-                    entity.hurt(DamageSource.OUT_OF_WORLD, 0.01F);
+                    if (phial instanceof PhialOfPropulsionItem) entity.hurt(DamageSource.OUT_OF_WORLD, 0.01F);
                     phial.UseOnEntity(entity, entity);
                     injectorBlock.reduceCharge();
                 }
