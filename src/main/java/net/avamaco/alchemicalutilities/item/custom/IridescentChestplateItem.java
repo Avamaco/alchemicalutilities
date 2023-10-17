@@ -28,10 +28,8 @@ public class IridescentChestplateItem extends ArmorItem {
 
     @Override
     public void onArmorTick(ItemStack stack, Level level, Player player) {
-        //if (level.getGameTime() % 100 == 0) player.sendMessage(new TextComponent("ticking"), player.getUUID());
         if (player.getHealth() / player.getMaxHealth() <= 0.5) {
             long time = level.getGameTime();
-            //if (time % 100 == 0) player.sendMessage(new TextComponent("low hp"), player.getUUID());
             if (isReady(stack, time)) {
                 inject(stack, player);
                 resetCooldown(stack, time);
@@ -59,7 +57,6 @@ public class IridescentChestplateItem extends ArmorItem {
             phial.UseOnEntity(player, player);
             if (phial instanceof PhialOfPropulsionItem) player.hurt(DamageSource.OUT_OF_WORLD, 0.01F);
         }
-        player.sendMessage(new TextComponent("dziala"), player.getUUID());
     }
 
     @Override
@@ -69,11 +66,27 @@ public class IridescentChestplateItem extends ArmorItem {
             pTooltipComponents.add(new TextComponent("Empty").withStyle(ChatFormatting.GRAY));
         }
         else {
-            //String currentPhial = PhialsUtil.getChargedPhial(pStack).getItem().toString();
-            //pTooltipComponents.add(new TextComponent(currentPhial));
             pTooltipComponents.add(PhialsUtil.getChargedPhial(pStack).getDisplayName());
+            if (pLevel != null) {
+                int MAX_BARS = 10;
+                int bars = getChargeBars(pStack, pLevel, MAX_BARS);
+                String chargeBar = "Charge: [" + "|".repeat(Math.max(0, bars)) +
+                        ".".repeat(Math.max(0, MAX_BARS - bars)) +
+                        "]";
+                ChatFormatting formatting = (bars == MAX_BARS) ? ChatFormatting.GREEN : ChatFormatting.WHITE;
+                pTooltipComponents.add(new TextComponent(chargeBar).withStyle(formatting));
+            }
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
+    private int getChargeBars(ItemStack stack, Level level, int maxBars) {
+        CompoundTag compoundTag = stack.getTag();
+        if (compoundTag == null || !compoundTag.contains("TimeUsed")) return 0;
+        long result = level.getGameTime() - compoundTag.getLong("TimeUsed");
+        result *= maxBars;
+        result /= MAX_COOLDOWN;
+        return (int) Math.min(maxBars, result);
     }
 }

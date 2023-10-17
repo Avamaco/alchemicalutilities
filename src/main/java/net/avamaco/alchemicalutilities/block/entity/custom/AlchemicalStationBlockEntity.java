@@ -358,6 +358,8 @@ public class AlchemicalStationBlockEntity extends BlockEntity implements MenuPro
             ItemStack toCharge = inventory.getItem(1).copy();
             toCharge.setCount(1);
             PhialsUtil.addChargedPhial(result, toCharge);
+            CompoundTag compoundtag = result.getOrCreateTag();
+            if (entity.hasLevel()) compoundtag.putLong("TimeUsed", entity.getLevel().getGameTime());
             entity.itemHandler.extractItem(0, 1, false);
             entity.itemHandler.extractItem(1, 1, false);
             entity.itemHandler.setStackInSlot(2, result);
