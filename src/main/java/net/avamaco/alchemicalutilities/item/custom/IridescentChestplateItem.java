@@ -66,7 +66,8 @@ public class IridescentChestplateItem extends ArmorItem {
             pTooltipComponents.add(new TextComponent("Empty").withStyle(ChatFormatting.GRAY));
         }
         else {
-            pTooltipComponents.add(PhialsUtil.getChargedPhial(pStack).getDisplayName());
+            pTooltipComponents.add(new TextComponent("Charged phial: " + PhialsUtil.getChargedPhial(pStack).getHoverName().getString())
+                    .withStyle(ChatFormatting.YELLOW));
             if (pLevel != null) {
                 int MAX_BARS = 10;
                 int bars = getChargeBars(pStack, pLevel, MAX_BARS);

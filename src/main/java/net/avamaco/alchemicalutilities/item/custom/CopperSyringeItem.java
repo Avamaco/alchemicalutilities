@@ -109,7 +109,8 @@ public class CopperSyringeItem extends Item {
             pTooltipComponents.add(new TextComponent("Empty").withStyle(ChatFormatting.GRAY));
         }
         else {
-            pTooltipComponents.add(PhialsUtil.getChargedPhial(pStack).getDisplayName());
+            pTooltipComponents.add(new TextComponent("Charged phial: " + PhialsUtil.getChargedPhial(pStack).getHoverName().getString())
+                    .withStyle(ChatFormatting.YELLOW));
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
