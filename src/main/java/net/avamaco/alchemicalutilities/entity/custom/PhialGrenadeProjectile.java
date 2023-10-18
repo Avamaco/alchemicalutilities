@@ -14,6 +14,7 @@ import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class PhialGrenadeProjectile extends ThrowableItemProjectile {
 
@@ -36,6 +37,7 @@ public class PhialGrenadeProjectile extends ThrowableItemProjectile {
     }
 
     @Override
+    @NotNull
     protected Item getDefaultItem() {
         return ModItems.PHIAL_GRENADE.get();
     }
@@ -46,9 +48,8 @@ public class PhialGrenadeProjectile extends ThrowableItemProjectile {
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.0F, Explosion.BlockInteraction.NONE);
 
         ItemStack phialStack = PhialsUtil.getChargedPhial(this.getItem());
-        if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem) {
-            ((PotionPhialItem) phialStack.getItem()).UseExplosion(this.position(), this, this.getOwner());
-        }
+        if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem phial)
+            phial.UseExplosion(this.position(), this, this.getOwner());
 
         if (!this.level.isClientSide) {
             this.level.broadcastEntityEvent(this, (byte)3);

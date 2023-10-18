@@ -18,6 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class PhialGrenadeItem extends Item {
         super(pProperties);
     }
 
+    @NotNull
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (!pLevel.isClientSide) {
@@ -52,9 +54,8 @@ public class PhialGrenadeItem extends Item {
             pTooltipComponents.add(new TextComponent("Empty").withStyle(ChatFormatting.GRAY));
         }
         else {
-            //String currentPhial = PhialsUtil.getChargedPhial(pStack).getItem().toString();
-            //pTooltipComponents.add(new TextComponent(currentPhial));
-            pTooltipComponents.add(PhialsUtil.getChargedPhial(pStack).getDisplayName());
+            pTooltipComponents.add(new TextComponent("Charged phial: " + PhialsUtil.getChargedPhial(pStack).getHoverName().getString())
+                    .withStyle(ChatFormatting.YELLOW));
         }
 
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);

@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import org.jetbrains.annotations.NotNull;
 
 public class PhialShotProjectile extends ThrowableItemProjectile {
     
@@ -30,6 +31,7 @@ public class PhialShotProjectile extends ThrowableItemProjectile {
     }
 
     @Override
+    @NotNull
     protected Item getDefaultItem() {
         return ModItems.GLASS_PHIAL.get();
     }
@@ -40,9 +42,8 @@ public class PhialShotProjectile extends ThrowableItemProjectile {
 
         if (pResult.getEntity() instanceof LivingEntity) {
             ItemStack phialStack = this.getItem();
-            if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem) {
-                ((PotionPhialItem) phialStack.getItem()).UseOnEntity((LivingEntity)pResult.getEntity(), this.getOwner());
-            }
+            if (phialStack.getItem() instanceof PotionPhialItem phial)
+                phial.UseOnEntity((LivingEntity)pResult.getEntity(), this.getOwner());
         }
 
         if (!this.level.isClientSide) {
@@ -56,9 +57,8 @@ public class PhialShotProjectile extends ThrowableItemProjectile {
         super.onHitBlock(pResult);
 
         ItemStack phialStack = this.getItem();
-        if (phialStack != null && phialStack.getItem() instanceof PotionPhialItem) {
-            ((PotionPhialItem) phialStack.getItem()).UseOnBlock(this.position(), pResult.getBlockPos(), pResult.getDirection(), this);
-        }
+        if (phialStack.getItem() instanceof PotionPhialItem phial)
+            phial.UseOnBlock(this.position(), pResult.getBlockPos(), pResult.getDirection(), this);
 
         if (!this.level.isClientSide) {
             this.level.broadcastEntityEvent(this, (byte)3);
