@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  I",
+    " P ",
+    "N  "
+  ],
+  "key": {
+    "P": {
+      "item": "alchemicalutilities:glass_phial"
+    },
+    "I": {
+      "item": "alchemicalutilities:iridescent_gold_ingot"
+    },
+    "N": {
+      "item": "minecraft:iron_nugget"
+    }
+  },
+  "result": {
+    "item": "alchemicalutilities:gold_syringe"
+  }
+}

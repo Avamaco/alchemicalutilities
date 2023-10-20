@@ -1,0 +1,19 @@
+{
+  "name": "Iridescent Gold",
+  "icon": "alchemicalutilities:iridescent_gold_ingot",
+  "category": "alchemicalutilities:iridescent_gear",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Similarly to amethysts, gold also seems to absorb the potion of light. However, it doesn't glow but instead it starts changing colors. I can feel strong magic radiating from it.",
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/iridescent_gold_ingot"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/iridescent_gold_block"
+    }
+  ]
+}

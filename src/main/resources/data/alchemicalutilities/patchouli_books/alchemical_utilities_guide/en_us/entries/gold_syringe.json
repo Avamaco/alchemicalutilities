@@ -1,0 +1,15 @@
+{
+  "name": "Iridescent Syringe",
+  "icon": "alchemicalutilities:gold_syringe",
+  "category": "alchemicalutilities:iridescent_gear",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Thanks to magical properties of iridescent gold, I was able to create a syringe that can concentrate two potion doses into one, making the resulting effect much stronger."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/gold_syringe"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Iridescent Armor",
+  "icon": "alchemicalutilities:iridescent_chestplate",
+  "category": "alchemicalutilities:iridescent_gear",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This armor resonates very well with my special sword, which causes the potion inside to affect nearby creatures when attacking one. The effect gets stronger the more armor pieces I wear."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/iridescent_boots"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/iridescent_leggings"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/iridescent_helmet"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "I've added a special container made out of glistening amethysts to the chestplate. After pouring a potion into it with help of the alchemical station, the glistening amethysts begin to slowly conjure more and more of it. When it's full, the potion will seep into me if I'm gravely injured."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "alchemicalutilities:crafting/iridescent_chestplate"
+    }
+  ]
+}

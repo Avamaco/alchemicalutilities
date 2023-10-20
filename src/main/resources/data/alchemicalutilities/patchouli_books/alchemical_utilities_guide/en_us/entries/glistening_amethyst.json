@@ -1,0 +1,11 @@
+{
+  "name": "Glistening Amethyst",
+  "icon": "alchemicalutilities:glistening_amethyst",
+  "category": "alchemicalutilities:iridescent_gear",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Amethyst blocks seem to behave very strangely when I pour a potion of light on them. Instead of forming a small ball of light nearby, the amethyst seems to absorb the potion and start glowing on its own."
+    }
+  ]
+}
