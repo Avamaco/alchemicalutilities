@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "I I",
+    "IAI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "alchemicalutilities:iridescent_gold_ingot"
+    },
+    "A": {
+      "item": "alchemicalutilities:glistening_amethyst"
+    }
+  },
+  "result": {
+    "item": "alchemicalutilities:iridescent_chestplate"
+  }
+}
