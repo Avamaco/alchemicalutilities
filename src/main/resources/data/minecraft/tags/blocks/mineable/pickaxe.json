@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "alchemicalutilities:alchemical_station",
+    "alchemicalutilities:synthesis_station",
+    "alchemicalutilities:potion_injector",
     "alchemicalutilities:glistening_amethyst",
     "alchemicalutilities:iridescent_gold_block"
   ]

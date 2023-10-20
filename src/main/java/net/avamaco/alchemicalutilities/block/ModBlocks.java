@@ -32,10 +32,10 @@ public class ModBlocks {
             () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion()), ModCreativeModeTab.ALCHEMICAL_TAB);
 
     public static final RegistryObject<Block> ALCHEMICAL_STATION = registerBlock("alchemical_station",
-            () -> new AlchemicalStationBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.ALCHEMICAL_TAB);
+            () -> new AlchemicalStationBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().strength(0.5F)), ModCreativeModeTab.ALCHEMICAL_TAB);
 
     public static final RegistryObject<Block> SYNTHESIS_STATION = registerBlock("synthesis_station",
-            () -> new SynthesisStationBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()), ModCreativeModeTab.ALCHEMICAL_TAB);
+            () -> new SynthesisStationBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().strength(0.5F)), ModCreativeModeTab.ALCHEMICAL_TAB);
 
     public static final RegistryObject<Block> POTION_INJECTOR = registerBlock("potion_injector",
             () -> new PotionInjectorBlock(BlockBehaviour.Properties.copy(Blocks.STONE)), ModCreativeModeTab.ALCHEMICAL_TAB);
