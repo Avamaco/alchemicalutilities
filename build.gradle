@@ -191,7 +191,7 @@ dependencies {
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:[1.18.2-71.1]:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:[1.18.2-71.1]")
 
-    implementation fg.deobf("curse.maven:pipez-443900:3819249")
+    //implementation fg.deobf("curse.maven:pipez-443900:3819249")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
