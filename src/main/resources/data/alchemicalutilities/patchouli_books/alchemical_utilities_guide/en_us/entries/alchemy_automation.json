@@ -1,0 +1,27 @@
+{
+  "name": "Alchemy Automation",
+  "icon": "minecraft:hopper",
+  "category": "alchemicalutilities:getting_started",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The piping system in my machines allows me to transfer their contents automatically."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:alchemical_station",
+      "text": "I can insert potions into the top slot by transferring items from top or bottom, and containers into the bottom slot by transferring items from any other side."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:synthesis_station",
+      "text": "I can insert fuel and phials from top or bottom, and other ingredients from any other side. I can also read a comparator signal to determine how many more potions can be done with current materials."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "alchemicalutilities:potion_injector",
+      "text": "I can insert potions from any side, but I can't extract them in any way, so I shouldn't use it as a storage."
+    }
+  ]
+}

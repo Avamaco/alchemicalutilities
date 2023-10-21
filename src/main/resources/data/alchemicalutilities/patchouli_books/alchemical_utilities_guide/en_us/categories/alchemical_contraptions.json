@@ -1,5 +1,6 @@
 {
   "name": "Alchemical Contraptions",
   "description": "Various tools that let you apply potion effect in different ways.",
-  "icon": "alchemicalutilities:copper_syringe"
+  "icon": "alchemicalutilities:copper_syringe",
+  "sortnum": 2
 }

@@ -2,6 +2,7 @@
   "name": "Copper Syringe",
   "icon": "alchemicalutilities:copper_syringe",
   "category": "alchemicalutilities:alchemical_contraptions",
+  "sortnum": 1,
   "pages": [
     {
       "type": "patchouli:text",

@@ -2,6 +2,7 @@
   "name": "Complex Potions",
   "icon": "alchemicalutilities:phial_of_warping",
   "category": "alchemicalutilities:potions",
+  "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",

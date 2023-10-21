@@ -2,6 +2,7 @@
   "name": "Iridescent Syringe",
   "icon": "alchemicalutilities:gold_syringe",
   "category": "alchemicalutilities:iridescent_gear",
+  "sortnum": 3,
   "pages": [
     {
       "type": "patchouli:text",

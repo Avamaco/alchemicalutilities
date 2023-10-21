@@ -2,6 +2,7 @@
   "name": "Phial Grenade",
   "icon": "alchemicalutilities:phial_grenade",
   "category": "alchemicalutilities:alchemical_contraptions",
+  "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",

@@ -1,5 +1,6 @@
 {
   "name": "Potions",
   "description": "All potions that I have invented so far.",
-  "icon": "alchemicalutilities:phial_of_healing"
+  "icon": "alchemicalutilities:phial_of_healing",
+  "sortnum": 3
 }

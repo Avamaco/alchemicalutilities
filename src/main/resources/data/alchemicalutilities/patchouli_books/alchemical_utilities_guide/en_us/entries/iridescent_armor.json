@@ -2,6 +2,7 @@
   "name": "Iridescent Armor",
   "icon": "alchemicalutilities:iridescent_chestplate",
   "category": "alchemicalutilities:iridescent_gear",
+  "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",

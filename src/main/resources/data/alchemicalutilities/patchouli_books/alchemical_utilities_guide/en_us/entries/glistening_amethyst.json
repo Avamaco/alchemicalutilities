@@ -2,6 +2,7 @@
   "name": "Glistening Amethyst",
   "icon": "alchemicalutilities:glistening_amethyst",
   "category": "alchemicalutilities:iridescent_gear",
+  "sortnum": 1,
   "pages": [
     {
       "type": "patchouli:text",

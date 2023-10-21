@@ -2,6 +2,7 @@
   "name": "Glass Phial",
   "icon": "alchemicalutilities:glass_phial",
   "category": "alchemicalutilities:getting_started",
+  "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",

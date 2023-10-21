@@ -2,6 +2,7 @@
   "name": "Alchemical Station",
   "icon": "alchemicalutilities:alchemical_station",
   "category": "alchemicalutilities:getting_started",
+  "sortnum": 3,
   "pages": [
     {
       "type": "patchouli:text",

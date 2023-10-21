@@ -2,6 +2,7 @@
   "name": "Alchemical Crossbow",
   "icon": "alchemicalutilities:alchemical_crossbow",
   "category": "alchemicalutilities:alchemical_contraptions",
+  "sortnum": 3,
   "pages": [
     {
       "type": "patchouli:text",

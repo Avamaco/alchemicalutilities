@@ -2,6 +2,7 @@
   "name": "Alchemical Glass",
   "icon": "alchemicalutilities:alchemical_glass",
   "category": "alchemicalutilities:getting_started",
+  "sortnum": 1,
   "pages": [
     {
       "type": "patchouli:text",

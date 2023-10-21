@@ -1,5 +1,6 @@
 {
   "name": "Iridescent Gear",
   "description": "Equipment made with magically enhanced materials.",
-  "icon": "alchemicalutilities:iridescent_gold_ingot"
+  "icon": "alchemicalutilities:iridescent_gold_ingot",
+  "sortnum": 4
 }

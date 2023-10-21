@@ -2,6 +2,7 @@
   "name": "Alchemist's Sword",
   "icon": "alchemicalutilities:alchemist_sword",
   "category": "alchemicalutilities:alchemical_contraptions",
+  "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",
